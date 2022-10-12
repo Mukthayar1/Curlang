@@ -20,8 +20,8 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         height: verticalScale(130),
         width: moderateScale(130),
-        // borderWidth: 4,
-        // borderColor: colors.orange1,
+        borderWidth: 4,
+        borderColor: colors.orange1,
         borderRadius: moderateScale(140),
         justifyContent: "center",
         alignItems: "center",
@@ -29,10 +29,10 @@ const styles = StyleSheet.create({
         // backgroundColor:"black"
     },
     thumbnail: {
-        height: verticalScale(130),
-        width: moderateScale(130),
+        height: verticalScale(80),
+        width: moderateScale(80),
         // borderRadius: 40,
-        tintColor: "#fff"
+        // tintColor: "#fff"
     },
     textarea: {
         width: "90%",

@@ -55,7 +55,7 @@ function CreateProfile() {
                             {profile?.path != undefined ?
                                 <Image source={{uri:profile?.path}} style={styles.profile} resizeMode={'cover'} />
                                 :
-                                <Image source={Assests.UploadThumbnail} style={styles.thumbnail} resizeMode={'cover'} />
+                                <Image source={Assests.UploadThumbnail} style={styles.thumbnail} resizeMode={'contain'} />
                             }
                         </Pressable>
 
