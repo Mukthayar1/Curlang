@@ -10,14 +10,16 @@ const ButtonComp = ({
   type,
   width,
   borderColor,
-  backgroundColor
+  backgroundColor,
+  height
 }) => {
   return (
     <TouchableOpacity
       style={[type == 0 ? styles.btnStyle0 : type == 1 ? styles.btnStyleGradinat : type == 3 ? styles.smallround : styles.btnStyle2,
       width ? { width } : {},
       borderColor ? { borderColor } : {},
-      backgroundColor ? { backgroundColor, borderColor: backgroundColor } : {}
+      backgroundColor ? { backgroundColor, borderColor: backgroundColor } : {},
+      height ? { height } : {}
       ]}
       hitSlop={hitSlopProp}
       activeOpacity={0.8}
@@ -28,7 +30,8 @@ const ButtonComp = ({
         type == 1 ? { color: colors.white } : {},
         type == 3 ? { color: colors.darkgreen, fontSize: 12 } : {},
         type == 4 ? { color: colors.darkgreen } : {},
-        borderColor ? { color: borderColor } : {}
+        borderColor ? { color: borderColor } : {},
+       
 
 
         ]}>{btnText}</Text>

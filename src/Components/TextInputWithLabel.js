@@ -17,6 +17,7 @@ const TextInputWithLabel
         keyboardType,
         borderColor,
         Labelcolors,
+        onSubmitEditing,
         ...props
     }) => {
         return (
@@ -32,6 +33,7 @@ const TextInputWithLabel
                     placeholder={placeholder}
                     keyboardType={keyboardType ? keyboardType : 'default'}
                     placeholderTextColor={type == 'white' ? colors.white : colors.blackOpacity25}
+                    onSubmitEditing={(e) => onSubmitEditing ? onSubmitEditing(e) : ''}
 
                     {...props}
                     {...props}
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         borderWidth: 1,
         color: colors.blackOpacity70,
-        borderColor: colors.darkgreen,
+        borderColor: colors.lightGreen,
         alignItems: 'center',
     },
     inputStyle2: {
@@ -67,7 +69,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         borderWidth: 1,
         color: colors.blackOpacity70,
-        borderColor: colors.darkgreen,
+        borderColor: colors.lightGreen,
         alignItems: 'center',
     },
     inputStylewhite: {

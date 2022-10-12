@@ -3,7 +3,7 @@ import { Image, View, TextInput } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import TextInputWithLabel from '../../../Components/TextInputWithLabel'
 import commonStyles from '../../../styles/commonStyles'
-import { moderateScale } from '../../../styles/responsiveSize';
+import { moderateScale, verticalScale } from '../../../styles/responsiveSize';
 import DropDown from '../../../Components/DropDown';
 import styles from '../styles'
 import TextLabel from '../../../Components/Label';
@@ -66,14 +66,6 @@ function BusinessForm() {
             </View>
 
             <View style={[commonStyles.row]}>
-                {/* <TextInputWithLabel
-                    label={' Your Age '}
-                    value={age}
-                    type={'white'}
-                    onChangeText={(e) => setage(e)}
-                    placeholder={'Age'}
-                    keyboardType={'number-pad'}
-                  /> */}
                 <TextInputWithLabel
                     label={'Enter Your Age'}
                     value={age}
@@ -88,7 +80,6 @@ function BusinessForm() {
                     { label: 'Other', value: 'other' }]}
                     value={gender} setvalue={setgender}
                     type={'short'} label={'Gender'}  placeholder={'Select'} />
-
             </View>
 
             <View>
@@ -129,7 +120,8 @@ function BusinessForm() {
                     onPress={() => { }}
                     // type={'4'}
                     marginTop={10}
-                    width={'40%'}
+                    width={'35%'}
+                    height={verticalScale(35)}
                     borderColor={'#fff'}
                 />
 
@@ -138,7 +130,8 @@ function BusinessForm() {
                     onPress={() => { }}
                     type={'4'}
                     marginTop={10}
-                    width={'40%'}
+                    width={'35%'}
+                    height={verticalScale(35)}
                     backgroundColor={colors.orange1}
                 />
 

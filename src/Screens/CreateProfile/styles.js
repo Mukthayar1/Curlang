@@ -1,13 +1,13 @@
 import { Modal, StyleSheet } from 'react-native';
 import colors from '../../styles/colors';
-import StatusBarHeight, { moderateScale, verticalScale } from '../../styles/responsiveSize';
+import StatusBarHeight, { moderateScale, verticalScale, textScale } from '../../styles/responsiveSize';
 
 const styles = StyleSheet.create({
     container: {
         marginTop: StatusBarHeight,
         flex: 1
     },
-    switch: { height: 30, width: 30, backgroundColor: colors.orange1, borderRadius: 20 },
+    switch: { height: verticalScale(30), width: moderateScale(30), backgroundColor: colors.orange1, borderRadius: moderateScale(20) },
     switchcontainer: {
         alignSelf: "flex-end",
         marginRight: 10,
@@ -51,26 +51,42 @@ const styles = StyleSheet.create({
     imagecontainer: {
         flexWrap: 'wrap',
         justifyContent: "space-around",
-        flexDirection:'row',
-        width:'90%',
-        alignSelf:'center'
+        flexDirection: 'row',
+        width: '90%',
+        alignSelf: 'center'
     },
-    travelimag:{
-        width:moderateScale(100),
-        height:verticalScale(100),
+    travelimag: {
+        width: moderateScale(100),
+        height: verticalScale(100),
     },
-    travelimagcontainer:{
-        width:moderateScale(100),
-        height:verticalScale(100),
-        overflow:"hidden",
-        borderRadius:10,
-        borderWidth:1,
-        borderColor:colors.orange1,
-        marginTop:10,
+    travelimagcontainer: {
+        width: moderateScale(100),
+        height: verticalScale(100),
+        overflow: "hidden",
+        borderRadius: moderateScale(20),
+        borderWidth: 1,
+        borderColor: colors.orange1,
+        marginTop: moderateScale(10),
     },
-    profile:{
-        width:moderateScale(150),
-        height:verticalScale(150),
+    profile: {
+        width: moderateScale(150),
+        height: verticalScale(150),
+    },
+    intresetview: {
+        minWidth: moderateScale(100),
+        minHeight: verticalScale(30),
+        backgroundColor: colors.white,
+        borderRadius: moderateScale(20),
+        flexDirection:"row",
+        alignItems:"center",
+        justifyContent:"center",
+        // borderWidth: 1,
+        // borderColor: colors.orange1,
+        marginTop: moderateScale(10),
+    },
+    cross: {
+        height: verticalScale(10),
+        width: moderateScale(10)
     }
 })
 

@@ -17,6 +17,7 @@ export default {
   //AppIcons
   AppIcons: require('../assets/images/appicon.png'),
   AppIcons2: require('../assets/images/AppIcon2.png'),
+  cross: require('../assets/images/cross.png'),
 
 
   //PageBackground
@@ -25,8 +26,8 @@ export default {
 
   //Thumbnail
   UploadThumbnail: require('../assets/images/thumbnailuser.png'),
-  User:require('../assets/images/user.png'),
-  User2:require('../assets/images/user2.png'),
+  User: require('../assets/images/user.png'),
+  User2: require('../assets/images/user2.png'),
 
 
   //country

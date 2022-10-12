@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         alignSelf:"center",
         borderWidth: 1,
         color: colors.blackOpacity70,
-        borderColor: colors.darkgreen,
+        borderColor: colors.lightGreen,
         alignItems: 'center',
         
     },
