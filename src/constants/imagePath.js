@@ -34,7 +34,17 @@ export default {
   Pakistan: require('../assets/images/pakistan.png'),
   China: require('../assets/images/china.png'),
   France: require('../assets/images/france.png'),
-  America: require('../assets/images/america.png')
+  America: require('../assets/images/america.png'),
+
+  //BottomTabs
+  Home: require('../assets/images/home.png'),
+  Search: require('../assets/images/search.png'),
+  Plus: require('../assets/images/plus.png'),
+  Heart: require('../assets/images/heart.png'),
+  Profile: require('../assets/images/profile.png')
+
+
+
 
 
 };
