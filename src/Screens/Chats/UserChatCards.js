@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     profile: {
-        height: 40,
-        width: 40,
+        height: 54,
+        width: 54,
         // borderRadius: 40
     },
     row: {

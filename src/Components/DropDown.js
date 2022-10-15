@@ -11,7 +11,7 @@ function DropDown({ data, value, setvalue, type, label, placeholder, multiple, z
     const [items, setItems] = useState(data);
 
     return (
-        <View style={{ width: type == 'short' ? "40%" : type == 'medium' ? '50%' : '90%', marginTop: -10 }}>
+        <View style={{ width: type == 'short' ? "40%" : type == 'medium' ? '50%' : '95%', marginTop: -10 }}>
             {label?.length > 0 ? <Text style={[styles.labelTextwhite,
             type == 'long' ? { alignSelf: "flex-start", marginLeft: 20 } : {}
             ]}>{label} </Text> : null}

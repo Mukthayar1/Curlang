@@ -17,7 +17,7 @@ const Search = () => {
         <View style={styles.row}>
             <Image source={Assets.LikeUser} style={styles.LikeUser} resizeMode={'contain'} />
             <View style={styles.row2}>
-                <TextLabel label={'Jhon Mick Like Your Photo'} color={'#000'} />
+                <TextLabel label={'Jhon Mick Like Your Photo'} color={'#000'} fontSize={13} />
                 <Image source={Assets.LikeHear} resizeMode={'contain'} style={styles.LikeHear} />
             </View>
         </View>
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     row: {
-        width: "95%",
+        width: "90%",
         alignSelf: 'center',
         justifyContent: "space-between",
         flexDirection: 'row',
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         flexDirection: 'row',
         width: '80%',
-        backgroundColor: '#F2F3F4',
+        backgroundColor: '#efefef',
         alignItems: "center",
         height: verticalScale(40),
         borderTopLeftRadius: moderateScale(20),
@@ -65,12 +65,12 @@ const styles = StyleSheet.create({
 
     },
     LikeUser: {
-        height: verticalScale(50),
-        width: moderateScale(50)
+        height: verticalScale(54),
+        width: moderateScale(54)
     },
     LikeHear: {
-        height: verticalScale(20),
-        width: moderateScale(20)
+        height: verticalScale(18),
+        width: moderateScale(22)
     }
 });
 

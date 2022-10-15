@@ -27,6 +27,8 @@ function BusinessForm() {
     const [interest, serinterest] = useState([])
     const [interest2, serinterest2] = useState([])
     const [travelphotos, settravelphotos] = useState([]);
+    const [perhour, setperhour] = useState();
+    const [totalcourse, settotalcourse] = useState();
 
 
     const uploadphoto = () => {
@@ -84,6 +86,27 @@ function BusinessForm() {
                     value={gender} setvalue={setgender}
                     type={'short'} label={'Gender'} placeholder={'Select'} />
             </View>
+
+
+            <TextLabel label={'Fee'} marginLeft={30} marginBottom={0} marginTop={20} fontSize={16} />
+                <View style={[commonStyles.row, { marginTop: moderateScale(20) }]}>
+                    <DropDown data={[
+                        { label: '50$/hr', value: '50$/hr', icon: () => <Image source={Asssests.America} resizeMode={'contain'} style={styles.iconStyle} /> },
+                        { label: '20$/hr', value: '20$/hr', icon: () => <Image source={Asssests.China} resizeMode={'contain'} style={styles.iconStyle} /> },
+                        { label: '10$/hr', value: '10$/hr', icon: () => <Image source={Asssests.Pakistan} resizeMode={'contain'} style={styles.iconStyle} /> }]}
+                        value={perhour} setvalue={setperhour}
+                        type={'short'} placeholder={'Select'} />
+
+                    <DropDown data={[
+                        { label: '250$/Course', value: '1', icon: () => <Image source={Asssests.America} resizeMode={'contain'} style={styles.iconStyle} /> },
+                        { label: '100$/Course', value: '2', icon: () => <Image source={Asssests.China} resizeMode={'contain'} style={styles.iconStyle} /> },
+                        { label: '190$/Course', value: '3', icon: () => <Image source={Asssests.Pakistan} resizeMode={'contain'} style={styles.iconStyle} /> }]}
+                        value={totalcourse} setvalue={settotalcourse}
+                        type={'medium'}
+                        placeholder={'Select'} />
+
+                </View>
+
 
 
             <View style={[commonStyles.row, { marginTop: moderateScale(10) }]}>

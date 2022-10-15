@@ -5,9 +5,12 @@ import { height, width,StatusBarHeight } from '../../styles/responsiveSize';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: width,
-    backgroundColor: '#ECF0F1',
-    height: '100%'
+    backgroundColor: '#fff',
+  },
+  lines:{
+    backgroundColor:'#000',
+    height:8,
+    width:'100%'
   },
   Headerbg: {
     height: 100,

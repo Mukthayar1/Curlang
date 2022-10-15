@@ -6,7 +6,7 @@ export default {
     green: '#52BE80',
     darkgreen: "#0B5345",
     orange1: '#EDBB99',
-    lightGreen:'#28B463',
+    lightGreen:'#027b76',
 
     black: 'rgba(20,19,19,1)',
     blackOpacity10: 'rgba(0,0,0,0.1)',
