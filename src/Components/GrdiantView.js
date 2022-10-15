@@ -1,12 +1,12 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import colors from '../styles/colors';
 
-const AppDefaultGrdiantContainer = ({children, style}) => {
+const AppDefaultGrdiantContainer = ({ children, style, header2 }) => {
   return (
     <LinearGradient
-      colors={['#117A65', colors.darkgreen, colors.darkgreen]}
+      colors={header2 ? ['#F2F3F4', '#F2F3F4', '#E5E7E9'] : ['#117A65', colors.darkgreen, colors.darkgreen]}
       style={style ? style : styleS.container}>
       {children}
     </LinearGradient>
@@ -17,7 +17,7 @@ export default AppDefaultGrdiantContainer;
 
 const styleS = StyleSheet.create({
   container: {
-    width:'80%',
+    width: '80%',
     padding: 10,
     shadowColor: '#000',
     shadowOffset: {

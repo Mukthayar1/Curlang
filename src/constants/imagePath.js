@@ -28,6 +28,10 @@ export default {
   UploadThumbnail: require('../assets/images/thumbnailuser.png'),
   User: require('../assets/images/user.png'),
   User2: require('../assets/images/user2.png'),
+  HeaderAdd: require('../assets/images/headerplus.png'),
+  HeaderChat: require('../assets/images/headerchat.png'),
+  LikeHear: require('../assets/images/likeHeart.png'),
+  LikeUser: require('../assets/images/LikeUser.png'),
 
 
   //country

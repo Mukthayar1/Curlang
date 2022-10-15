@@ -14,6 +14,7 @@ import imagePath from '../constants/imagePath';
 import strings from '../constants/lang';
 import navigationStrings from '../constants/navigationStrings';
 
+
 const BottomTab = createBottomTabNavigator();
 
 const TabRoutes = (props) => {
@@ -43,6 +44,8 @@ const TabRoutes = (props) => {
     const UnActiveIcon = ({ img }) => (
         <Image style={styles.UnActiveIcon} source={img} resizeMode={'contain'} />
     );
+
+
 
 
 
@@ -127,30 +130,30 @@ const styles = StyleSheet.create({
     ActiveImage: {
         height: verticalScale(20),
         width: moderateScale(20),
-        tintColor:colors.darkgreen
+        tintColor: colors.darkgreen
     },
     UnActiveIcon: {
         height: verticalScale(20),
         width: moderateScale(20),
-        tintColor:colors.white
+        tintColor: colors.white
     },
-    ActiveImageProfile:{
+    ActiveImageProfile: {
         height: verticalScale(20),
         width: moderateScale(20),
     },
-    centerButton:{
-        height:verticalScale(60),
-        width:moderateScale(60),
-        borderRadius:moderateScale(50),
-        backgroundColor:colors.white,
-        justifyContent:"center",
-        alignItems:"center",
-        top:verticalScale(-30)
+    centerButton: {
+        height: verticalScale(60),
+        width: moderateScale(60),
+        borderRadius: moderateScale(50),
+        backgroundColor: colors.white,
+        justifyContent: "center",
+        alignItems: "center",
+        top: verticalScale(-30)
     },
-    PlusIcons:{
+    PlusIcons: {
         height: verticalScale(25),
         width: moderateScale(25),
-        tintColor:colors.darkgreen
+        tintColor: colors.darkgreen
     }
 
 });
