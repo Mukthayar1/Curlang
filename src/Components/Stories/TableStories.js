@@ -34,8 +34,8 @@ export default function Stories() {
   };
 
   return (
-    <View>
-      <ScrollView horizontal={true} style={{ marginLeft: 20, marginTop: 20}} showsHorizontalScrollIndicator={false}>
+    <View style={{height:verticalScale(120)}}>
+      <ScrollView horizontal={true} style={{ marginLeft: 20, marginTop: 10,marginBottom:10}} showsHorizontalScrollIndicator={false}>
         {StoriesData.map((val, ind) => {
           return <View key={ind}>{renderItem(val)}</View>;
         })}
@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: colors.orange1,
+    overflow:"visible"
   },
   image: {
     height: verticalScale(75),
