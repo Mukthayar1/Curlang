@@ -1,20 +1,21 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, Pressable } from 'react-native';
 
-
 import CustomHeader from '../../Components/CustomHeader';
 import WrapperContainer from '../../Components/WrapperContainer';
 import colors from '../../styles/colors';
-import Assets from '../../constants/imagePath'
+import Assets from '../../constants/imagePath';
 import { moderateScale, verticalScale } from '../../styles/responsiveSize';
 import navigationStrings from '../../constants/navigationStrings';
-import ProfileHeader from './ProfileHeader/ProfileHeader'
+import ProfileHeader from './ProfileHeader/ProfileHeader';
+import TableStories from '../../Components/Stories/TableStories'
 
 const Profile = ({ navigation }) => {
     return (
         <WrapperContainer backgroundColor={colors.white}>
 
             <ProfileHeader />
+            <TableStories/>
             
             
 
