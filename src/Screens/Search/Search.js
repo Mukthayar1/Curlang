@@ -14,7 +14,7 @@ import colors from '../../styles/colors'
 import CustomHeader from '../../Components/CustomHeader';
 import WrapperContainer from '../../Components/WrapperContainer'
 
-function BusinessForm() {
+function Search() {
 
     const [city, setcity] = useState();
     const [state, setstate] = useState();
@@ -202,4 +202,4 @@ function BusinessForm() {
     )
 }
 
-export default BusinessForm
+export default Search

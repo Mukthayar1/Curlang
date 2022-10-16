@@ -23,7 +23,7 @@ export default function Stories() {
   ];
   const renderItem = val => {
     return (
-      <TouchableOpacity style={styles.imgcontainer}>
+      <TouchableOpacity style={[styles.imgcontainer, val.Id == 6 ? { borderColor: '#fff' } : {}]}>
         <Image source={val.icon} style={styles.image} />
         {val?.Id == 6 ?
           <View style={styles.pluscontainer}><Image source={Assets.Plus} style={styles.plus} resizeMode={'contain'} /></View>
@@ -34,8 +34,8 @@ export default function Stories() {
   };
 
   return (
-    <View style={{height:verticalScale(120)}}>
-      <ScrollView horizontal={true} style={{ marginLeft: 20, marginTop: 10,marginBottom:10}} showsHorizontalScrollIndicator={false}>
+    <View style={{ height: verticalScale(120) }}>
+      <ScrollView horizontal={true} style={{ marginTop: 10, marginBottom: 10 }} showsHorizontalScrollIndicator={false}>
         {StoriesData.map((val, ind) => {
           return <View key={ind}>{renderItem(val)}</View>;
         })}
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: colors.orange1,
-    overflow:"visible"
+    overflow: "visible"
   },
   image: {
     height: verticalScale(75),
@@ -76,6 +76,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 2,
     position: "absolute",
-    bottom: -10
+    bottom: -10,
+    borderWidth: 1,
+    borderColor: '#fff'
   }
 });

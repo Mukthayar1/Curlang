@@ -11,14 +11,15 @@ import ProfileHeader from './ProfileHeader/ProfileHeader';
 import TableStories from '../../Components/Stories/TableStories';
 import AnimatedHeader from './ProfileHeader/AnimatedHeader';
 
-import PostPage from './Tabs/Post'
+import TabsView from './Tabs'
 
 const Profile = ({ navigation }) => {
     return (
         <WrapperContainer backgroundColor={colors.white}>
             <ProfileHeader />
-            <TableStories/>
-            <PostPage/>
+            <TableStories />
+            <TabsView />
+
             {/* <AnimatedHeader/> */}
         </WrapperContainer>
     )
