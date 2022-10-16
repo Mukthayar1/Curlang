@@ -6,7 +6,7 @@ import colors from '../styles/colors';
 const AppDefaultGrdiantContainer = ({ children, style, header2 }) => {
   return (
     <LinearGradient
-      colors={header2 ? ['#F2F3F4', '#F2F3F4', '#E5E7E9'] : ['#027b76', '#027b76', '#002e2c']}
+      colors={header2 ? ['#F2F3F4', '#F2F3F4', '#E5E7E9'] : ['#027b76', '#027b76', '#0E6251']}
       style={style ? style : styleS.container}>
       {children}
     </LinearGradient>

@@ -8,17 +8,18 @@ import Assets from '../../constants/imagePath';
 import { moderateScale, verticalScale } from '../../styles/responsiveSize';
 import navigationStrings from '../../constants/navigationStrings';
 import ProfileHeader from './ProfileHeader/ProfileHeader';
-import TableStories from '../../Components/Stories/TableStories'
+import TableStories from '../../Components/Stories/TableStories';
+import AnimatedHeader from './ProfileHeader/AnimatedHeader';
+
+import PostPage from './Tabs/Post'
 
 const Profile = ({ navigation }) => {
     return (
         <WrapperContainer backgroundColor={colors.white}>
-
             <ProfileHeader />
             <TableStories/>
-            
-            
-
+            <PostPage/>
+            {/* <AnimatedHeader/> */}
         </WrapperContainer>
     )
 }

@@ -74,7 +74,7 @@ export default CustomHeader;
 const styles = StyleSheet.create({
     container: {
         width: "100%",
-        // minHeight: verticalScale(400),
+        minHeight: verticalScale(400),
         paddingBottom:20,
         paddingTop: StatusBarHeight,
         borderBottomLeftRadius: 40,
