@@ -15,5 +15,6 @@ export default {
     BOOK_SELECTIONS: "bookSelections",
     ANIMATION: "animation",
     CreateProfile: 'CreateProfile',
-    UserList: 'UserList'
+    UserList: 'UserList',
+    Explore:'Explore'
 }

@@ -7,7 +7,8 @@ import {
     Search,
     Post,
     Notification,
-    Profile
+    Profile,
+    Explore
 } from '../Screens';
 import { moderateScale, width, moderateScaleVertical, verticalScale } from '../styles/responsiveSize';
 import imagePath from '../constants/imagePath';
@@ -85,8 +86,8 @@ const TabRoutes = (props) => {
                 }}
             />
             <BottomTab.Screen
-                name={navigationStrings.POST}
-                component={Post}
+                name={navigationStrings.Explore}
+                component={Explore}
                 options={{
                     tabBarIcon: ({ focused }) => {
                         return (

@@ -24,7 +24,7 @@ export default {
   greenbackground: require('../assets/images/BgGreen.png'),
   AuthBg: require('../assets/images/AuthBg.png'),
 
-  //Thumbnail
+  //Custom Icons
   UploadThumbnail: require('../assets/images/thumbnailuser.png'),
   User: require('../assets/images/user.png'),
   User2: require('../assets/images/user2.png'),
@@ -32,6 +32,18 @@ export default {
   HeaderChat: require('../assets/images/headerchat.png'),
   LikeHear: require('../assets/images/likeHeart.png'),
   LikeUser: require('../assets/images/LikeUser.png'),
+  Videos: require('../assets/images/videos.png'),
+  Cart: require('../assets/images/cart.png'),
+  PLanes: require('../assets/images/plane.png'),
+  Fitness: require('../assets/images/fast.png'),
+  SearchBar: require('../assets/images/SearchBar.png'),
+  Popular1: require('../assets/images/Popular1.png'),
+  Popular2: require('../assets/images/Popular2.png'),
+  Popular3: require('../assets/images/Popular3.png'),
+  Popular4: require('../assets/images/Popular4.png'),
+  Popular5: require('../assets/images/Popular5.png'),
+  Popular6: require('../assets/images/Popular6.png'),
+
 
 
   //country

@@ -5,10 +5,10 @@ import colors from '../styles/colors';
 import StatusBarHeight, { moderateScale, moderateScaleVertical } from '../styles/responsiveSize';
 import Loader from './Loader';
 
-const WrapperContainer = ({ headerStyle, children, isLoading, }) => {
+const WrapperContainer = ({ headerStyle, children, isLoading, backgroundColor }) => {
   const navigation = useNavigation()
   return (
-    <View style={{ flex: 1}}>
+    <View style={{ flex: 1, backgroundColor: backgroundColor ? backgroundColor : colors.white }}>
       {/* <StatusBar backgroundColor={statusBarColor} barStyle={barStyle} /> */}
       <SafeAreaView style={styles.container}>
         {children}
