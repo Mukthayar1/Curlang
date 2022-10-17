@@ -43,6 +43,9 @@ export default {
   Popular4: require('../assets/images/Popular4.png'),
   Popular5: require('../assets/images/Popular5.png'),
   Popular6: require('../assets/images/Popular6.png'),
+  Share:require('../assets/images/share2.png'),
+  sharemenu:require('../assets/images/share.png'),
+
 
 
 
