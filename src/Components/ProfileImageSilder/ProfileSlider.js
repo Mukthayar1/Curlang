@@ -40,7 +40,7 @@ export default function Index(props) {
     return (
       <>
         <ImageBackground
-          resizeMode="cover"
+          resizeMode='stretch'
           source={item.image}
           style={styles.img}>
           <View style={styles.topfixed}>

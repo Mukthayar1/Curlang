@@ -20,13 +20,18 @@ function PostView() {
 
                 </View>
 
-                <View style={[styles.row2,{marginRight:10}]}>
+                <View style={[styles.row2, { marginRight: 10 }]}>
                     <Image source={Assets.Share} style={styles.share} />
-                    <Image source={Assets.sharemenu} style={styles.share2}  />
+                    <Image source={Assets.sharemenu} style={styles.share2} />
                 </View>
 
             </View>
             <ProfileSlider />
+            <View style={styles.row3}>
+                <TextLabel label={'Jhon Alex & '} color={'#fff'} fontSize={12} />
+                <TextLabel label={'4,588'} color={'#7DCEA0'} fontSize={12}  />
+                <TextLabel label={'Like this Photo'} color={'#fff'} fontSize={12} />
+            </View>
         </View>
     )
 }
@@ -57,8 +62,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center'
     },
-    share:{
-        marginRight:10
+    row3: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent:'center'
+    },
+    share: {
+        marginRight: 10
     }
 })
 
