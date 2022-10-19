@@ -18,7 +18,8 @@ import WrapperContainer from '../../Components/WrapperContainer'
 import Stories from '../../Components/Stories/TableStories';
 import SearchBar from './Comp/SearchBar'
 import PostView from '../../Components/PostView'
-import TeacherCards from './TeacherCards'
+import TeacherCards from './TeacherCards';
+import SuggestionContainer from '../../Components/SuggestionContainer'
 
 function Home() {
   return (
@@ -26,13 +27,21 @@ function Home() {
     <ImageBackground source={Asssests.greenbackground} style={[commonStyles.backgroundImage]}>
       <CustomHeader />
       <ScrollView >
+
         <Stories />
+
         <SearchBar />
-        <PostView />
-        <TeacherCards />
 
         <PostView />
-        <View style={{height:100,width:"100%"}}/>
+
+        <TeacherCards />
+
+        <SuggestionContainer />
+
+        <PostView />
+
+        <View style={{ height: 100, width: "100%" }} />
+
       </ScrollView>
     </ImageBackground>
 
