@@ -17,6 +17,7 @@ const TextLabel = ({
     textAlign,
     width,
     fontWeight,
+    marginRight
 }) => {
     return (
         <View
@@ -24,6 +25,7 @@ const TextLabel = ({
                 Styles.containers,
                 paddingHorizontal ? { paddingHorizontal } : { paddingHorizontal: 10 },
                 marginTop ? { marginTop } : { marginTop: 0 },
+                
             ]}>
             <Text
                 allowFontScaling={false}
@@ -38,6 +40,7 @@ const TextLabel = ({
                     textAlign ? { textAlign } : {},
                     width ? { width } : {},
                     fontWeight ? { fontWeight } : { fontWeight: '600' },
+                   
                 ]}>
                 {label}
             </Text>

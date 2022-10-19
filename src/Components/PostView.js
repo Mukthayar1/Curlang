@@ -1,9 +1,9 @@
 import React from 'react';
 
 import ProfileSlider from '../Components/ProfileImageSilder/ProfileSlider'
-import { Image, View, TextInput, ImageBackground, Pressable, ScrollView, StyleSheet } from 'react-native'
+import { Image, View, TextInput, ImageBackground, Pressable, ScrollView, StyleSheet, Text } from 'react-native'
 import colors from '../styles/colors';
-import { moderateScale, verticalScale } from '../styles/responsiveSize';
+import { moderateScale, verticalScale, scale } from '../styles/responsiveSize';
 import Assets from '../constants/imagePath'
 import TextLabel from './Label';
 
@@ -28,9 +28,21 @@ function PostView() {
             </View>
             <ProfileSlider />
             <View style={styles.row3}>
-                <TextLabel label={'Jhon Alex & '} color={'#fff'} fontSize={12} />
-                <TextLabel label={'4,588'} color={'#7DCEA0'} fontSize={12}  />
-                <TextLabel label={'Like this Photo'} color={'#fff'} fontSize={12} />
+                <Text style={styles.details}>Jhon Alex &
+                    <Text style={styles.details2}> 4,588</Text>
+                    <Text> Like this Photo</Text>
+                </Text>
+
+                <Text style={styles.postinfo}>SACRIFICE | VIRUS
+                    <Text style={styles.postinfo2}> this photomanipulation inspired in the virus </Text>
+                </Text>
+
+                <Text style={styles.comments}>View 500 Comments</Text>
+
+                <Text style={[styles.postinfo,{paddingBottom:10}]}>Perla_Pipol
+                    <Text style={styles.postinfo2}>Nice Picture Great Artwork!!</Text>
+                </Text>
+
             </View>
         </View>
     )
@@ -43,7 +55,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         marginTop: moderateScale(20),
         justifyContent: "center",
-        alignItems: "center",
+        // alignItems: "center",
         borderRadius: moderateScale(20)
     },
     Header: {
@@ -63,12 +75,46 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     row3: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent:'center'
+        // flexDirection: 'row',
+        // alignItems: 'center',
+        // justifyContent: 'center'
     },
     share: {
         marginRight: 10
+    },
+    details:{
+        fontSize:scale(10),
+        color:colors.white,
+        textAlign:"left",
+        marginLeft:moderateScale(22),
+        marginTop:-10,
+        // paddingBottom:10
+    },
+    details2:{
+        color:colors.orange1
+    },
+    postinfo:{
+        fontSize:scale(10),
+        fontWeight:'bold',
+        color:colors.white,
+        textAlign:"left",
+        marginLeft:moderateScale(22),
+        marginTop:5,
+        paddingBottom:5
+    },
+    postinfo2:{
+        fontSize:scale(10),
+        textAlign:"left",
+        marginLeft:moderateScale(22),
+        marginTop:5,
+    },
+    comments:{
+        fontSize:scale(10),
+        color:colors.white,
+        textAlign:"left",
+        marginLeft:moderateScale(22),
+        opacity:0.5
+
     }
 })
 
