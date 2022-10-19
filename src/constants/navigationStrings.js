@@ -16,5 +16,6 @@ export default {
     ANIMATION: "animation",
     CreateProfile: 'CreateProfile',
     UserList: 'UserList',
-    Explore:'Explore'
+    Explore:'Explore',
+    SearchResult:'SearchResult'
 }

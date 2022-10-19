@@ -5,7 +5,8 @@ export { default as Post } from './Post/Post';
 export { default as Notification } from './Notification/Notification';
 export { default as Profile } from './Profile/Profile';
 export { default as UserList } from './Chats/UsersList';
-export { default as Explore } from './Explore/Explore'
+export { default as Explore } from './Explore/Explore';
+export { default as SearchResult } from './SearchResult/SearchResult'
 
 //Auth Screen
 export { default as InitialAuth } from './AuthScreens/InitialAuth/InitialAuth';

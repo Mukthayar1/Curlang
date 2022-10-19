@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Image, View, TextInput, ImageBackground, Pressable, ScrollView } from 'react-native'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { useNavigation } from '@react-navigation/native';
 
 import TextInputWithLabel from '../../Components/TextInputWithLabel'
 import commonStyles from '../../styles/commonStyles'
@@ -13,6 +14,7 @@ import ButtonComp from '../../Components/ButtonComp'
 import colors from '../../styles/colors'
 import CustomHeader from '../../Components/CustomHeader';
 import WrapperContainer from '../../Components/WrapperContainer'
+import navigationStrings from '../../constants/navigationStrings';
 
 function Search() {
 
@@ -27,26 +29,6 @@ function Search() {
     const [cate, setcat] = useState([]);
     const [courses, setcourses] = useState([]);
 
-
-
-    const StudentList = [
-        { icon: Asssests.User, Id: 0 },
-        { icon: Asssests.User2, Id: 1 },
-        { icon: Asssests.User, Id: 2 },
-        { icon: Asssests.User2, Id: 3 },
-        { icon: Asssests.User, Id: 4 },
-        { icon: Asssests.User2, Id: 5 },
-    ];
-
-    const Courses = [
-        { icon: Asssests.America, Id: 0 },
-        { icon: Asssests.China, Id: 1 },
-        { icon: Asssests.America, Id: 2 },
-        { icon: Asssests.Pakistan, Id: 3 },
-        { icon: Asssests.America, Id: 4 },
-        { icon: Asssests.China, Id: 5 },
-    ];
-
     const removeItem = (id) => {
         let arr = interest
         let filter = arr.filter((item, index) => index != id);
@@ -54,10 +36,7 @@ function Search() {
     }
 
 
-
-
-
-    // console.log('gander===>',gender)
+    const navigation = useNavigation()
 
 
     return (
@@ -171,28 +150,22 @@ function Search() {
                     </View>
 
 
-                    <View style={[commonStyles.row, { marginTop: moderateScale(20) }]}>
-                        <ButtonComp
-                            btnText='Clear'
-                            onPress={() => { }}
-                            // type={'4'}
-                            marginTop={10}
-                            width={'35%'}
-                            height={verticalScale(35)}
-                            borderColor={'#fff'}
-                        />
+                   
+                       
 
                         <ButtonComp
-                            btnText='Save'
-                            onPress={() => { }}
+                            btnText='Search'
+                            onPress={() => {navigation.navigate(navigationStrings.SearchResult) }}
                             type={'4'}
                             marginTop={10}
-                            width={'35%'}
-                            height={verticalScale(35)}
+                            width={'90%'}
+                            height={verticalScale(55)}
                             backgroundColor={colors.orange1}
                         />
 
-                    </View>
+                 
+
+                    <View style={{ height: 100, width: "100%" }} />
                 </View>
             </ScrollView>
             {/* </KeyboardAwareScrollView> */}
