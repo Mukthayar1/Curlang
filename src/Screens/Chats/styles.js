@@ -10,7 +10,12 @@ const styles = StyleSheet.create({
   lines: {
     backgroundColor: '#000',
     height: 8,
-    width: '100%'
+    width: '100%',
+  },
+  lines2: {
+    backgroundColor: '#000',
+    height: 8,
+    width: '100%',
   },
   Headerbg: {
     height: 100,
@@ -67,36 +72,43 @@ const styles = StyleSheet.create({
   },
   SendMsgContainer: {
     alignSelf: 'center',
-    margin: 10,
     position: 'absolute',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 5,
-    bottom: 10,
-    width: '90%',
-    backgroundColor: "#fff",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    borderRadius: 40,
+    justifyContent: "center",
+    bottom: 0,
+    width: '100%',
     borderWidth: 1,
-    borderColor: colors.black
+    // borderColor: colors.darkgreen,
+    height: verticalScale(80),
+    // borderTopWidth:5,
+  },
+  chatcontainer: {
+    flexDirection: 'row',
+    width: '90%',
+    alignItems: "center",
+    justifyContent: "space-around"
+  },
+  chatmessage: {
+    flexDirection: 'row',
+    width: '80%',
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: colors.white,
+    borderRadius: 40,
+    justifyContent:"space-between",
+    // backgroundColor:'pink',
+    height:45
   },
   SendMessage: {
-    height: 20,
-    width: 20,
-    marginRight: 10
+    height: 40,
+    width: 40,
+    // marginRight: 10
   },
   TextInput: {
     width: '80%',
     paddingLeft: 20,
-    color: '#000'
+    color: '#fff',
+
   },
   ScrollView: {
     width: "90%",
@@ -145,12 +157,29 @@ const styles = StyleSheet.create({
     width: moderateScale(150),
     borderTopLeftRadius: 15,
     borderBottomRightRadius: 15,
-    marginTop:10
+    marginTop: 10
   },
-  userimage:{
+  userimage: {
     height: verticalScale(50),
     width: moderateScale(50),
-    marginRight:5
+    marginRight: 5
+  },
+  callcontainer:{
+    width:moderateScale(90),
+    alignSelf:"flex-end",
+    marginTop:moderateScale(20),
+    marginRight:moderateScale(20),
+    flexDirection:'row',
+    justifyContent:'space-around',
+    // padding:10,
+    borderRadius:20,
+    height:verticalScale(30),
+    alignItems:'center'
+  },
+  whitelines:{
+    height:'100%',
+    backgroundColor:colors.white,
+    width:2
   }
 });
 

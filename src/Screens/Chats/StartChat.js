@@ -16,6 +16,7 @@ import CustomHeader from '../../Components/CustomHeader';
 import colors from '../../styles/colors';
 import TextLabel from '../../Components/Label';
 import Assets from '../../constants/imagePath'
+import AppDefaultGrdiantContainer from '../../Components/GrdiantView';
 
 export default function UserList(props) {
   const navigation = useNavigation()
@@ -60,7 +61,18 @@ export default function UserList(props) {
 
       <CustomHeader label={'Jhon Mick'} header2={true} type={'chat'} />
 
-      <ScrollView style={styles.ScrollView} contentContainerStyle={{marginTop:20}}>
+      <AppDefaultGrdiantContainer style={styles.callcontainer}>
+        <Pressable>
+          <Image source={Assets.Call} style={[styles.icons, { marginLeft: 10 }]} resizeMode={'contain'} />
+        </Pressable>
+        <View style={styles.whitelines} />
+        <Pressable>
+          <Image source={Assets.Vcall} style={[styles.icons, { marginLeft: 10 }]} resizeMode={'contain'} />
+        </Pressable>
+
+      </AppDefaultGrdiantContainer>
+
+      <ScrollView style={styles.ScrollView} contentContainerStyle={{ marginTop: 20 }}>
         {chats.map((value, index) => {
           return (
             <>
@@ -103,10 +115,24 @@ export default function UserList(props) {
         })}
       </ScrollView>
 
-      <View style={styles.SendMsgContainer}>
-        <TextInput numberOfLines={2} placeholder='Write something here...' placeholderTextColor={colors.COLOR3} style={styles.TextInput} />
-        <Image source={Assets.Sendmsg} style={styles.SendMessage} />
-      </View>
+      {/* <AppDefaultGrdiantContainer style={styles.lines2}/> */}
+
+      <AppDefaultGrdiantContainer style={styles.SendMsgContainer}>
+
+        <View style={styles.chatcontainer}>
+
+          <Image source={Assets.Attachments} style={[styles.icons, { marginRight: 10 }]} resizeMode={'contain'} />
+
+          <View style={styles.chatmessage}>
+            <TextInput numberOfLines={2} placeholder='Write a message' placeholderTextColor={colors.white} style={styles.TextInput} />
+            <Image source={Assets.Sendmsg} style={styles.SendMessage} resizeMode={'contain'} />
+          </View>
+
+          <Image source={Assets.Emojie} style={[styles.icons, { marginLeft: 10 }]} resizeMode={'contain'} />
+
+        </View>
+
+      </AppDefaultGrdiantContainer>
 
     </View>
   );
