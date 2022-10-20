@@ -46,6 +46,15 @@ export default {
   Share:require('../assets/images/share2.png'),
   sharemenu:require('../assets/images/share.png'),
   Call:require('../assets/images/call.png'),
+  Vcall:require('../assets/images/video.png'),
+  Attachments:require('../assets/images/attachments.png'),
+  Chatback:require('../assets/images/chatback.png'),
+  ChatSearch:require('../assets/images/chatsearch.png'),
+  Emojie:require('../assets/images/emojie.png'),
+  Sendmsg:require('../assets/images/send.png'),
+
+
+
 
 
 

@@ -5,11 +5,12 @@ import { useNavigation } from '@react-navigation/native';
 import TextLabel from '../../Components/Label';
 import colors from '../../styles/colors';
 import Assets from '../../constants/imagePath'
+import navigationStrings from '../../constants/navigationStrings';
 
 export default function UserChatCards({ item, index }) {
     const navigation = useNavigation()
     return (
-        <Pressable style={styles.container} onPress={() => {}}>
+        <Pressable style={styles.container} onPress={() => {navigation.navigate(navigationStrings.StartChat)}}>
             <View style={styles.row}>
                 <Image source={Assets.LikeUser} style={styles.profile} resizeMode={'contain'} />
                 <View style={styles.innerrow}>

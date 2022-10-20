@@ -10,24 +10,44 @@ import colors from '../styles/colors';
 import TextLabel from './Label';
 import navigationStrings from '../constants/navigationStrings';
 
-function CustomHeader({ label, header2, color }) {
+function CustomHeader({ label, header2, color, type }) {
     const navigation = useNavigation()
     return (
         <AppDefaultGrdiantContainer style={styles.container} header2={header2}>
-            <Image source={Assets.HeaderAdd} style={[styles.icon,
-            header2 == true ? { tintColor: colors.darkgreen } : {}
-            ]} resizeMode={'contain'} />
+            {type == 'chat' ?
+                <Pressable onPress={() => navigation.goBack()}>
+                    <Image source={Assets.Chatback} style={[styles.icon,
+                    header2 == true ? { tintColor: colors.darkgreen } : {}
+                    ]} resizeMode={'contain'} />
+                </Pressable>
+                :
+                <Image source={Assets.HeaderAdd} style={[styles.icon,
+                header2 == true ? { tintColor: colors.darkgreen } : {}
+                ]} resizeMode={'contain'} />
+            }
             {label ?
 
                 <TextLabel label={label} fontSize={19} color={color ? color : colors.black} fontWeight={'500'} />
                 :
                 <Image source={Assets.AppIcons2} style={styles.appicon} resizeMode={'contain'} />
             }
-            <Pressable onPress={() => navigation.navigate(navigationStrings.UserList)}>
-                <Image source={Assets.HeaderChat} style={[styles.icon,
-                header2 == true ? { tintColor: colors.darkgreen } : {}
-                ]} resizeMode={'contain'} />
-            </Pressable>
+
+            {type == 'chat' ?
+
+                <Pressable onPress={() => alert('Search')}>
+                    <Image source={Assets.ChatSearch} style={[styles.icon,
+                    header2 == true ? { tintColor: colors.darkgreen } : {}
+                    ]} resizeMode={'contain'} />
+                </Pressable>
+                :
+                <Pressable onPress={() => navigation.navigate(navigationStrings.UserList)}>
+                    <Image source={Assets.HeaderChat} style={[styles.icon,
+                    header2 == true ? { tintColor: colors.darkgreen } : {}
+                    ]} resizeMode={'contain'} />
+                </Pressable>
+            }
+
+
         </AppDefaultGrdiantContainer>
     )
 }

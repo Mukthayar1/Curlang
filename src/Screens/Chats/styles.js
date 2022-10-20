@@ -1,16 +1,16 @@
 import { StyleSheet, Platform } from 'react-native';
 import colors from '../../styles/colors';
-import { height, width,StatusBarHeight } from '../../styles/responsiveSize';
+import { height, width, StatusBarHeight, verticalScale, moderateScale } from '../../styles/responsiveSize';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
   },
-  lines:{
-    backgroundColor:'#000',
-    height:8,
-    width:'100%'
+  lines: {
+    backgroundColor: '#000',
+    height: 8,
+    width: '100%'
   },
   Headerbg: {
     height: 100,
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   },
   mymsg: {
     alignSelf: 'flex-start',
-    backgroundColor: '#fff',
+    backgroundColor: '#E5E7E9',
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -119,12 +119,13 @@ const styles = StyleSheet.create({
     shadowRadius: 1.41,
 
     elevation: 2,
-    borderBottomRightRadius: 20,
+    borderTopLeftRadius: 15,
+    borderBottomRightRadius: 15,
     padding: 10
   },
   othermsg: {
     alignSelf: 'flex-start',
-    backgroundColor: colors.black,
+    backgroundColor: colors.lightGreen,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -134,9 +135,22 @@ const styles = StyleSheet.create({
     shadowRadius: 1.41,
 
     elevation: 2,
-    borderBottomLeftRadius: 20,
+    borderTopLeftRadius: 15,
+    borderBottomRightRadius: 15,
     padding: 10,
     alignSelf: 'flex-end'
+  },
+  imgechat: {
+    height: verticalScale(150),
+    width: moderateScale(150),
+    borderTopLeftRadius: 15,
+    borderBottomRightRadius: 15,
+    marginTop:10
+  },
+  userimage:{
+    height: verticalScale(50),
+    width: moderateScale(50),
+    marginRight:5
   }
 });
 

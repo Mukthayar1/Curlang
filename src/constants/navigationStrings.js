@@ -17,5 +17,6 @@ export default {
     CreateProfile: 'CreateProfile',
     UserList: 'UserList',
     Explore:'Explore',
-    SearchResult:'SearchResult'
+    SearchResult:'SearchResult',
+    StartChat:'StartChat'
 }
