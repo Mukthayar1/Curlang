@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Pressable } from 'react-native';
+import { Image, StyleSheet, Pressable ,View } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 
 import Assets from '../constants/imagePath';
@@ -10,7 +10,7 @@ import colors from '../styles/colors';
 import TextLabel from './Label';
 import navigationStrings from '../constants/navigationStrings';
 
-function CustomHeader({ label, header2, color, type }) {
+function CustomHeader({ label, header2, color, type, call }) {
     const navigation = useNavigation()
     return (
         <AppDefaultGrdiantContainer style={styles.container} header2={header2}>
@@ -32,7 +32,8 @@ function CustomHeader({ label, header2, color, type }) {
                 <Image source={Assets.AppIcons2} style={styles.appicon} resizeMode={'contain'} />
             }
 
-            {type == 'chat' ?
+
+            {type == 'chat' && call != true ?
 
                 <Pressable onPress={() => alert('Search')}>
                     <Image source={Assets.ChatSearch} style={[styles.icon,
@@ -40,11 +41,16 @@ function CustomHeader({ label, header2, color, type }) {
                     ]} resizeMode={'contain'} />
                 </Pressable>
                 :
-                <Pressable onPress={() => navigation.navigate(navigationStrings.UserList)}>
-                    <Image source={Assets.HeaderChat} style={[styles.icon,
-                    header2 == true ? { tintColor: colors.darkgreen } : {}
-                    ]} resizeMode={'contain'} />
-                </Pressable>
+                <>
+                    {call != true ?
+
+                        <Pressable onPress={() => navigation.navigate(navigationStrings.UserList)}>
+                            <Image source={Assets.HeaderChat} style={[styles.icon,
+                            header2 == true ? { tintColor: colors.darkgreen } : {}
+                            ]} resizeMode={'contain'} />
+                        </Pressable>
+                        : <View/>}
+                </>
             }
 
 

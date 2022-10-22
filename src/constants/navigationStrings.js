@@ -18,5 +18,7 @@ export default {
     UserList: 'UserList',
     Explore:'Explore',
     SearchResult:'SearchResult',
-    StartChat:'StartChat'
+    StartChat:'StartChat',
+    VideoCall:'VideoCall',
+    AudioCall:'AudioCall'
 }

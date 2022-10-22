@@ -8,6 +8,8 @@ export { default as UserList } from './Chats/UsersList';
 export { default as StartChat } from './Chats/StartChat'
 export { default as Explore } from './Explore/Explore';
 export { default as SearchResult } from './SearchResult/SearchResult'
+export {default as VideoCall} from './Calls/VideoCall';
+export {default as AudioCall} from './Calls/AudioCall'
 
 //Auth Screen
 export { default as InitialAuth } from './AuthScreens/InitialAuth/InitialAuth';

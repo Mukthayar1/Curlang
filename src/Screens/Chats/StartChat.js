@@ -17,6 +17,7 @@ import colors from '../../styles/colors';
 import TextLabel from '../../Components/Label';
 import Assets from '../../constants/imagePath'
 import AppDefaultGrdiantContainer from '../../Components/GrdiantView';
+import navigationStrings from '../../constants/navigationStrings';
 
 export default function UserList(props) {
   const navigation = useNavigation()
@@ -62,11 +63,11 @@ export default function UserList(props) {
       <CustomHeader label={'Jhon Mick'} header2={true} type={'chat'} />
 
       <AppDefaultGrdiantContainer style={styles.callcontainer}>
-        <Pressable>
+        <Pressable onPress={()=>navigation.navigate(navigationStrings.AudioCall)}>
           <Image source={Assets.Call} style={[styles.icons, { marginLeft: 10 }]} resizeMode={'contain'} />
         </Pressable>
         <View style={styles.whitelines} />
-        <Pressable>
+        <Pressable onPress={()=>navigation.navigate(navigationStrings.VideoCall)}>
           <Image source={Assets.Vcall} style={[styles.icons, { marginLeft: 10 }]} resizeMode={'contain'} />
         </Pressable>
 
