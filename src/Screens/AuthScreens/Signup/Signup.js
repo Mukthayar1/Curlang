@@ -1,6 +1,8 @@
 //import liraries
 import React, { useState } from 'react';
-import { View, StyleSheet, ImageBackground, ScrollView } from 'react-native';
+import { View, StyleSheet, ImageBackground, ScrollView, Alert } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 import ButtonComp from '../../../Components/ButtonComp';
 import WrapperContainer from '../../../Components/WrapperContainer';
 import Assets from '../../../constants/imagePath'
@@ -11,7 +13,11 @@ import AppDefaultGrdiantContainer from '../../../Components/GrdiantView';
 import { moderateScale } from '../../../styles/responsiveSize';
 import CustomDropDown from '../../../Components/CustomDropDown';
 import { cityies } from '../../../config/FakeData';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { apiPost } from '../../../utils/utils';
+import { signUp } from '../../../redux/actions/auth';
+import Loader from '../../../Components/Loader';
+import { AccessKey } from '../../../config/urls';
+import { API_BASE_URL } from '../../../config/urls';
 
 const Login = ({ navigation }) => {
 
@@ -23,10 +29,21 @@ const Login = ({ navigation }) => {
     const [cpass, setcpass] = useState();
     const [city, setcity] = useState();
     const [state, setstate] = useState();
+    const [isLoading, SetisLoading] = useState(false);
 
 
     const signup = () => {
-        navigation.navigate('CreateProfile')
+
+        // navigation.navigate('CreateProfile')
+        SetisLoading(true)
+        if (username?.length > 0 && email?.length > 0 && pass?.length < 6 && pass != cpass) {
+            const data = `signup?AccessKey=${AccessKey}&username=${username}&Email=${email}&Designation=${'0'}&Password=${pass}&City=${city}&Country=${'country'}&State=${state}`
+            signUp(data, SetisLoading)
+        }
+        else {
+            Alert.alert('Please fill all required field');
+            SetisLoading(false);
+        }
     }
 
     const back = () => {
@@ -45,22 +62,25 @@ const Login = ({ navigation }) => {
                         {/* <Image source={Assets.AppIcons2} style={commonStyles.AppIcons2} resizeMethod={'resize'} resizeMode={'contain'} /> */}
 
                         <TextInputWithLabel
-                            label={'Enter Your Name'}
+                            label={'Enter Your Name *'}
                             value={name}
                             TopWidth={true}
+                            width={'80%'}
                             onChangeText={(e) => setusername(e)}
                             placeholder={'Your Name Here'} />
 
                         <TextInputWithLabel
-                            label={'Enter Your Email'}
+                            label={'Enter Your Email *'}
                             value={email}
+                            width={'80%'}
                             keyboardType={'email-address'}
-                            onChangeText={(e) => setpass(e)}
+                            onChangeText={(e) => setemail(e)}
                             placeholder={'Your Email Here'} />
 
                         <TextInputWithLabel
-                            label={'Username'}
+                            label={'Username *'}
                             value={username}
+                            width={'80%'}
                             onChangeText={(e) => setusername(e)}
                             placeholder={'@username'} />
 
@@ -68,22 +88,25 @@ const Login = ({ navigation }) => {
                         <TextInputWithLabel
                             label={'Enter Your Number'}
                             value={number}
+                            width={'80%'}
                             keyboardType={'name-phone-pad'}
                             onChangeText={(e) => setnumber(e)}
                             placeholder={'Your Number Here'} />
 
 
                         <TextInputWithLabel
-                            label={'Password'}
+                            label={'Password *'}
                             value={pass}
+                            width={'80%'}
                             // secureTextEntry={true}
                             onChangeText={(e) => setpass(e)}
                             placeholder={'Enter Password'} />
 
 
                         <TextInputWithLabel
-                            label={'Confirm Password'}
+                            label={'Confirm Password *'}
                             value={cpass}
+                            width={'80%'}
                             // secureTextEntry={true}
                             onChangeText={(e) => setcpass(e)}
                             placeholder={'Confirm Password'} />
@@ -109,7 +132,7 @@ const Login = ({ navigation }) => {
                         <AppDefaultGrdiantContainer style={styles.gradinatButton}>
                             <ButtonComp
                                 btnText='Sign Up'
-                                onPress={signup}
+                                onPress={() => signup()}
                                 type={'1'}
                             />
                         </AppDefaultGrdiantContainer>
@@ -125,6 +148,7 @@ const Login = ({ navigation }) => {
 
                     </ImageBackground>
                 </View>
+                <Loader isLoading={isLoading} />
             </KeyboardAwareScrollView>
         </WrapperContainer>
 

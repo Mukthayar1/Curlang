@@ -54,6 +54,7 @@ export async function apiReq(
 			})
 			.catch(error => {
 				console.log(error)
+				alert(error)
 				console.log(error && error.response, 'the error respne')
 				if (error && error.response && error.response.status === 401) {
 					clearUserData();

@@ -4,10 +4,7 @@ import { moderateScale, verticalScale } from "../../styles/responsiveSize";
 
 const styles = StyleSheet.create({
     container: { flex: 1 },
-    callbody:{
-        height:"100%",
-        width:"100%"
-    },
+    callbody:{ flex: 1 },
     calluser:{
         alignSelf:"center",
         marginTop:verticalScale(-150),
@@ -21,11 +18,20 @@ const styles = StyleSheet.create({
     },
     bottom:{
         position:"absolute",
-        bottom:100,
+        bottom:20,
         width:"100%",
         justifyContent:"center",
         alignItems:"center",
         // backgroundColor:"pink"
+    },
+    bottomWithRow:{
+        position:"absolute",
+        bottom:30,
+        width:'80%',
+        alignSelf:"center",
+        alignItems:"center",
+        flexDirection:'row',
+        justifyContent:"space-around"
     },
     linki:{
         height:verticalScale(150),

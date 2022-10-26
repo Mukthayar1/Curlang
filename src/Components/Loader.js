@@ -4,7 +4,8 @@ import { BarIndicator } from "react-native-indicators"
 import commonStyles from '../styles/commonStyles';
 import colors from '../styles/colors';
 
-const Loader = ({ isLoading = false }) => {
+const Loader = ({isLoading}) => {
+    console.log('isLoading',isLoading)
     if (isLoading) {
         return (
             <Modal transparent visible={isLoading} >

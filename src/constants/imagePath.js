@@ -52,7 +52,9 @@ export default {
   ChatSearch:require('../assets/images/chatsearch.png'),
   Emojie:require('../assets/images/emojie.png'),
   Sendmsg:require('../assets/images/send.png'),
-
+  VoiceClose:require('../assets/images/voiceclose.png'),
+  CallReject:require('../assets/images/callreject.png'),
+  Speaker:require('../assets/images/speaker.png'),
 
 
 

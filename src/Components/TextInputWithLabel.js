@@ -18,6 +18,7 @@ const TextInputWithLabel
         borderColor,
         Labelcolors,
         onSubmitEditing,
+        width,
         ...props
     }) => {
         return (
@@ -27,7 +28,9 @@ const TextInputWithLabel
                 ]}>{label} </Text>
                 <TextInput
                     style={[type == 1 ? styles.inputStyle2 : type == 'white' ? styles.inputStylewhite : styles.inputStyle,
-                    borderColor ? { borderColor, color: '#fff' } : {}]}
+                    borderColor ? { borderColor, color: '#fff' } : {},
+                    width ? { width } : {}
+                    ]}
                     value={value}
                     onChangeText={onChangeText}
                     placeholder={placeholder}
