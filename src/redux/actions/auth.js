@@ -6,39 +6,56 @@ import types from '../types';
 const { dispatch } = store;
 import { Alert } from 'react-native';
 import { API_BASE_URL } from '../../config/urls';
+import actions from '.';
 
 
-export function signUp(data, SetisLoading) {
+export function signUp(data, SetisLoading, navigation) {
   // return apiPost(SIGNUP_API, data);
-  var requestOptions = { method: 'POST'};
-
+  var requestOptions = { method: 'POST' };
 
   fetch(`${API_BASE_URL}${data}`, requestOptions)
     .then(response => response.json())
     .then(result => {
-
-      console.log(result)
-
-      if (result?.ResponseType == 0) {
-        Alert.alert(result.Msg)
-      }
+      if (result?.ResponseType == 0) Alert.alert(result.Msg)
 
       if (result?.ResponseType == 1) {
-        Alert.alert(result.Msg)
+        Alert.alert('Account Created Successfully, Login To Continue !')
+        navigation.goBack()
       }
-
       SetisLoading(false);
-      
+
     })
     .catch(error => {
       SetisLoading(false)
-      console.log('error', error)
+      console.log('error signUp', error)
     });
 }
 
 
-export const login = (data) => {
-  dispatch(saveUserData(data));
+export const login = (data, SetisLoading) => {
+
+  var requestOptions = { method: 'GET' };
+
+  fetch(`${API_BASE_URL}${data}`, requestOptions)
+    .then(response => response.json())
+    .then(result => {
+      console.log(result)
+      if (result?.ResponseType == 0) Alert.alert(result.Msg)
+      if (result?.ResponseType == 1) {
+        dispatch(saveUserData(result));
+      }
+
+      SetisLoading(false)
+
+    })
+    .catch(error => {
+      SetisLoading(false)
+      console.log('error login ', error)
+    });
+
+
+
+
 
   //saveUserData is a function which is define in reducer state
 

@@ -8,9 +8,9 @@ const Loader = ({isLoading}) => {
     console.log('isLoading',isLoading)
     if (isLoading) {
         return (
-            <Modal transparent visible={isLoading} >
-                <View style={{ ...commonStyles.loader, backgroundColor: "rgba(0,0,0,0.3)" }}>
-                    <BarIndicator size={25} color={colors.themeColor} />
+            <Modal transparent visible={true} >
+                <View style={{ ...commonStyles.loader, backgroundColor: "rgba(0,0,0,0.1)" }}>
+                    <BarIndicator size={25} color={colors.darkgreen} />
                 </View>
             </Modal>
         );

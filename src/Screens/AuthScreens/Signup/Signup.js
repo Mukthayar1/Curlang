@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, ImageBackground, ScrollView, Alert } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { useNavigation } from '@react-navigation/native';
 
 import ButtonComp from '../../../Components/ButtonComp';
 import WrapperContainer from '../../../Components/WrapperContainer';
@@ -17,9 +18,9 @@ import { apiPost } from '../../../utils/utils';
 import { signUp } from '../../../redux/actions/auth';
 import Loader from '../../../Components/Loader';
 import { AccessKey } from '../../../config/urls';
-import { API_BASE_URL } from '../../../config/urls';
 
-const Login = ({ navigation }) => {
+
+const Login = () => {
 
     const [name, setname] = useState();
     const [email, setemail] = useState();
@@ -30,15 +31,19 @@ const Login = ({ navigation }) => {
     const [city, setcity] = useState();
     const [state, setstate] = useState();
     const [isLoading, SetisLoading] = useState(false);
+    const navigation = useNavigation()
 
 
     const signup = () => {
 
         // navigation.navigate('CreateProfile')
         SetisLoading(true)
-        if (username?.length > 0 && email?.length > 0 && pass?.length < 6 && pass != cpass) {
+        if (username?.length != undefined && email?.length != undefined && pass?.length != undefined) {
             const data = `signup?AccessKey=${AccessKey}&username=${username}&Email=${email}&Designation=${'0'}&Password=${pass}&City=${city}&Country=${'country'}&State=${state}`
-            signUp(data, SetisLoading)
+            signUp(data, SetisLoading, navigation)
+        }
+        else if (pass != cpass) {
+            Alert.alert('Password does not match');
         }
         else {
             Alert.alert('Please fill all required field');
@@ -66,7 +71,7 @@ const Login = ({ navigation }) => {
                             value={name}
                             TopWidth={true}
                             width={'80%'}
-                            onChangeText={(e) => setusername(e)}
+                            onChangeText={(e) => setname(e)}
                             placeholder={'Your Name Here'} />
 
                         <TextInputWithLabel

@@ -1,33 +1,41 @@
 //import liraries
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, Image, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+
 import ButtonComp from '../../../Components/ButtonComp';
 import WrapperContainer from '../../../Components/WrapperContainer';
 import navigationStrings from '../../../constants/navigationStrings';
-import actions from '../../../redux/actions';
 import Assets from '../../../constants/imagePath'
 import commonStyles from '../../../styles/commonStyles';
 import TextInput from '../../../Components/TextInputs';
 import AppDefaultGrdiantContainer from '../../../Components/GrdiantView';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { moderateScale } from '../../../styles/responsiveSize';
-import colors from '../../../styles/colors';
+import { login } from '../../../redux/actions/auth';
+import { AccessKey } from '../../../config/urls';
+import Loader from '../../../Components/Loader';
 
-const Login = ({ navigation }) => {
 
+const Login = () => {
+
+    const navigation = useNavigation()
     const [username, setusername] = useState();
     const [pass, setpass] = useState();
-    // const navigation = useNavigation()
+    const [isLoading, SetisLoading] = useState(false)
 
 
-    const onLogin = () => {
-        actions.login(true)
+    const Login = () => {
+        SetisLoading(true)
+        if (username?.length != undefined && pass?.length != undefined) {
+            const data = `login?AccessKey=${AccessKey}&Email=${username}&Password=${pass}`
+            login(data, SetisLoading)
+        }
+        else {
+            Alert.alert('Please fill all required field');
+            SetisLoading(false);
+        }
     }
 
-    const ForgotPass = () => {
-        actions.login(true)
-    }
 
     const Signup = () => {
         navigation.navigate(navigationStrings.SIGNUP)
@@ -45,7 +53,7 @@ const Login = ({ navigation }) => {
                     <TextInput
                         value={username}
                         onChangeText={(e) => setusername(e)}
-                        placeholder={'username'} />
+                        placeholder={'Email'} />
 
                     <TextInput
                         value={pass}
@@ -55,14 +63,14 @@ const Login = ({ navigation }) => {
 
                     <ButtonComp
                         btnText='Forgot Password'
-                        onPress={ForgotPass}
+                        onPress={()=>{}}
                         type={'0'}
-                         />
+                    />
 
                     <AppDefaultGrdiantContainer style={styles.gradinatButton}>
                         <ButtonComp
                             btnText='Login'
-                            onPress={onLogin}
+                            onPress={Login}
                             type={'1'} />
                     </AppDefaultGrdiantContainer>
 
@@ -74,7 +82,7 @@ const Login = ({ navigation }) => {
 
                 </ImageBackground>
             </View>
-
+            <Loader isLoading={isLoading} />
         </WrapperContainer>
     );
 };
