@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, Image, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
 
 import ButtonComp from '../../../Components/ButtonComp';
 import WrapperContainer from '../../../Components/WrapperContainer';
@@ -11,14 +12,15 @@ import commonStyles from '../../../styles/commonStyles';
 import TextInput from '../../../Components/TextInputs';
 import AppDefaultGrdiantContainer from '../../../Components/GrdiantView';
 import { moderateScale } from '../../../styles/responsiveSize';
-import { login } from '../../../redux/actions/auth';
+import { login } from '../../../store/Action/AuthFunctions';
 import { AccessKey } from '../../../config/urls';
 import Loader from '../../../Components/Loader';
 
 
 const Login = () => {
 
-    const navigation = useNavigation()
+    const navigation = useNavigation();
+    const dispatch = useDispatch();
     const [username, setusername] = useState();
     const [pass, setpass] = useState();
     const [isLoading, SetisLoading] = useState(false)
@@ -28,7 +30,7 @@ const Login = () => {
         SetisLoading(true)
         if (username?.length != undefined && pass?.length != undefined) {
             const data = `login?AccessKey=${AccessKey}&Email=${username}&Password=${pass}`
-            login(data, SetisLoading)
+            login(data, SetisLoading, dispatch)
         }
         else {
             Alert.alert('Please fill all required field');
@@ -63,7 +65,7 @@ const Login = () => {
 
                     <ButtonComp
                         btnText='Forgot Password'
-                        onPress={()=>{}}
+                        onPress={() => { }}
                         type={'0'}
                     />
 

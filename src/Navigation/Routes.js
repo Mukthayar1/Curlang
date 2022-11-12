@@ -9,17 +9,18 @@ import MainStack from './MainStack';
 const Stack = createNativeStackNavigator();
 
 export default function Routes() {
-    const userData = useSelector(state => state.auth);
-    const isFirstTime = useSelector(state => state.isFirstTime.isFirstTime);
 
-    console.log("user data", userData)
+    const AuthReducer = useSelector(state => state?.AuthReducer);
+
+    console.log('AuthReducer===========>',AuthReducer?.UserDetail?.ProfileID)
+
 
     return (
         <NavigationContainer>
             <Stack.Navigator>
                 {
-                    userData?.isLogin ? <>{MainStack(Stack)}</>
-                        : <>{AuthScreen(Stack, isFirstTime)}</>
+                    AuthReducer?.LoginUser && AuthReducer?.UserDetail?.ProfileID > 0 ? <>{MainStack(Stack)}</>
+                        : <>{AuthScreen(Stack, AuthReducer)}</>
 
                 }
             </Stack.Navigator>

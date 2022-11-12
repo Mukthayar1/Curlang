@@ -31,7 +31,7 @@ function DropDown({ data, value, setvalue, type, label, placeholder, multiple, z
                 zIndex={zIndex ? zIndex : 1000}
                 zIndexInverse={zIndexInverse ? zIndexInverse : 1000}
                 textStyle={{
-                    color: '#fff'
+                    color: '#000'
                 }}
             />
         </View>

@@ -15,7 +15,7 @@ import { moderateScale } from '../../../styles/responsiveSize';
 import CustomDropDown from '../../../Components/CustomDropDown';
 import { cityies } from '../../../config/FakeData';
 import { apiPost } from '../../../utils/utils';
-import { signUp } from '../../../redux/actions/auth';
+import { signUp } from '../../../store/Action/AuthFunctions';
 import Loader from '../../../Components/Loader';
 import { AccessKey } from '../../../config/urls';
 

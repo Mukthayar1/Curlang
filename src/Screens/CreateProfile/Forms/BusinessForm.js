@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Image, View, TextInput } from 'react-native'
+import { Image, View, TextInput, Alert } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import TextInputWithLabel from '../../../Components/TextInputWithLabel'
 import commonStyles from '../../../styles/commonStyles'
@@ -11,8 +12,11 @@ import Asssests from '../../../constants/imagePath'
 import HorizontalList from '../HorizontalList';
 import ButtonComp from '../../../Components/ButtonComp'
 import colors from '../../../styles/colors'
+import Loader from '../../../Components/Loader';
+import { CreateProfile } from '../../../store/Action/AuthFunctions';
+import { AccessKey } from '../../../config/urls';
 
-function BusinessForm() {
+function BusinessForm({ profile }) {
 
     const [city, setcity] = useState();
     const [state, setstate] = useState();
@@ -20,6 +24,47 @@ function BusinessForm() {
     const [gender, setgender] = useState();
     const [perhour, setperhour] = useState();
     const [totalcourse, settotalcourse] = useState();
+    const [aboutMe, SetaboutMe] = useState('')
+    const [isLoading, SetisLoading] = useState(false)
+    const UserDetail = useSelector(state => state?.AuthReducer?.UserDetail?.Data);
+    const dispatch = useDispatch();
+
+    console.log('AuthReducer===>', UserDetail)
+
+
+    const ClearValues = () => {
+        setcity();
+        setstate();
+        setage();
+        setgender();
+        setperhour();
+        settotalcourse();
+
+    }
+
+    const AddUsers = () => {
+
+        SetisLoading(true)
+
+        const Body = {
+            "accessKey": AccessKey,
+            "UserID": UserDetail?.ID,
+            "profilePic": profile?.path,
+            "type": "Teacher",
+            "gender": gender,
+            "age": age,
+            "aboutMe": aboutMe,
+            "feePerHour": perhour,
+            "feePerCourse": totalcourse,
+            "selectedCity": "",
+            "favoriteCity": city,
+        }
+
+        console.log('Body',Body)
+
+        CreateProfile(Body, SetisLoading, dispatch)
+
+    }
 
     const StudentList = [
         { icon: Asssests.User, Id: 0 },
@@ -79,7 +124,22 @@ function BusinessForm() {
                     { label: 'Female', value: 'female' },
                     { label: 'Other', value: 'other' }]}
                     value={gender} setvalue={setgender}
-                    type={'short'} label={'Gender'}  placeholder={'Select'} />
+                    type={'short'} label={'Gender'} placeholder={'Select'} />
+
+                {/* <ElementDropDown Label={'Select Category'}
+                    defaultValue={'SELECT CATEGORIES'}
+                    width={'85%'} alignSelf={'center'}
+                    height={60} Bg={'none'} marginTop={20}
+                    fontSize={16} fontWeight={'500'} /> */}
+
+                {/* <CustomDropDown
+                    data={GENDERLIST}
+                    Label={'Gender'}
+                    defaultValue={'-Select-'}
+                    width={'50%'}
+                    setvalue={setgender}
+                    value={gender}
+                    Bg={'none'} /> */}
             </View>
 
             <View>
@@ -88,7 +148,9 @@ function BusinessForm() {
                     style={styles.textarea}
                     placeholder='Introduce yourself'
                     multiline={true}
+                    value={aboutMe}
                     placeholderTextColor={'#fff'}
+                    onChangeText={(e) => SetaboutMe(e)}
                 />
             </View>
 
@@ -99,7 +161,7 @@ function BusinessForm() {
                     { label: '20$/hr', value: '20$/hr', icon: () => <Image source={Asssests.China} resizeMode={'contain'} style={styles.iconStyle} /> },
                     { label: '10$/hr', value: '10$/hr', icon: () => <Image source={Asssests.Pakistan} resizeMode={'contain'} style={styles.iconStyle} /> }]}
                     value={perhour} setvalue={setperhour}
-                    type={'short'}  placeholder={'Select'} />
+                    type={'short'} placeholder={'Select'} />
 
                 <DropDown data={[
                     { label: '250$/Course', value: '1', icon: () => <Image source={Asssests.America} resizeMode={'contain'} style={styles.iconStyle} /> },
@@ -117,7 +179,7 @@ function BusinessForm() {
             <View style={[commonStyles.row, { marginTop: moderateScale(20) }]}>
                 <ButtonComp
                     btnText='Clear'
-                    onPress={() => { }}
+                    onPress={() => ClearValues()}
                     // type={'4'}
                     marginTop={10}
                     width={'35%'}
@@ -127,7 +189,7 @@ function BusinessForm() {
 
                 <ButtonComp
                     btnText='Save'
-                    onPress={() => { }}
+                    onPress={() => AddUsers()}
                     type={'4'}
                     marginTop={10}
                     width={'35%'}
@@ -138,7 +200,7 @@ function BusinessForm() {
             </View>
 
 
-
+            <Loader isLoading={isLoading} type={'white'} />
 
         </KeyboardAwareScrollView>
     )

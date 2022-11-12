@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Image, View, Pressable } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import ImagePicker from 'react-native-image-crop-picker';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 import TextInputWithLabel from '../../../Components/TextInputWithLabel'
@@ -13,8 +14,11 @@ import TextLabel from '../../../Components/Label';
 import Asssests from '../../../constants/imagePath'
 import ButtonComp from '../../../Components/ButtonComp'
 import colors from '../../../styles/colors'
+import Loader from '../../../Components/Loader';
+import { CreateProfile } from '../../../store/Action/AuthFunctions';
+import { AccessKey } from '../../../config/urls';
 
-function BusinessForm() {
+function BusinessForm({ profile }) {
 
     const [nickname, setnickname] = useState('')
     const [city, setcity] = useState();
@@ -29,6 +33,11 @@ function BusinessForm() {
     const [travelphotos, settravelphotos] = useState([]);
     const [perhour, setperhour] = useState();
     const [totalcourse, settotalcourse] = useState();
+    const [isLoading, SetisLoading] = useState(false)
+    const UserDetail = useSelector(state => state?.AuthReducer?.UserDetail?.Data);
+    const dispatch = useDispatch();
+
+    console.log('lang', lang)
 
 
     const uploadphoto = () => {
@@ -54,10 +63,47 @@ function BusinessForm() {
 
 
 
+    const AddUsers = () => {
+
+        SetisLoading(true)
+
+
+        let Travel = []
+        travelphotos.map((v, i) => {
+            Travel.push({
+                FileName: v.path,
+                Title: ''
+
+            })
+        })
+
+        const Body = {
+            "accessKey": AccessKey,
+            "UserID": UserDetail?.ID,
+            "profilePic": profile?.path,
+            "type": "Teacher",
+            "gender": gender,
+            "age": age,
+            "aboutMe": '',
+            "feePerHour": perhour,
+            "feePerCourse": totalcourse,
+            "selectedCity": city,
+            "favoriteCity": country,
+            "interests": interest,
+            "nativeLanguages": lang,
+            "travelImages": Travel
+        }
+
+        CreateProfile(Body, SetisLoading, dispatch)
+
+    }
+
+
+
     return (
         <KeyboardAwareScrollView>
 
-            <View style={{ marginTop: moderateScale(20) }}>
+            <View style={{ marginTop: moderateScale(20), width: "90%", alignSelf: "center" }}>
                 <TextInputWithLabel
                     label={'Your Nick Name'}
                     value={nickname}
@@ -89,27 +135,27 @@ function BusinessForm() {
 
 
             <TextLabel label={'Fee'} marginLeft={30} marginBottom={0} marginTop={20} fontSize={16} />
-                <View style={[commonStyles.row, { marginTop: moderateScale(20) }]}>
-                    <DropDown data={[
-                        { label: '50$/hr', value: '50$/hr', icon: () => <Image source={Asssests.America} resizeMode={'contain'} style={styles.iconStyle} /> },
-                        { label: '20$/hr', value: '20$/hr', icon: () => <Image source={Asssests.China} resizeMode={'contain'} style={styles.iconStyle} /> },
-                        { label: '10$/hr', value: '10$/hr', icon: () => <Image source={Asssests.Pakistan} resizeMode={'contain'} style={styles.iconStyle} /> }]}
-                        value={perhour} setvalue={setperhour}
-                        type={'short'} placeholder={'Select'} />
+            <View style={[commonStyles.row, { marginTop: moderateScale(20) }]}>
+                <DropDown data={[
+                    { label: '50$/hr', value: '50$/hr', icon: () => <Image source={Asssests.America} resizeMode={'contain'} style={styles.iconStyle} /> },
+                    { label: '20$/hr', value: '20$/hr', icon: () => <Image source={Asssests.China} resizeMode={'contain'} style={styles.iconStyle} /> },
+                    { label: '10$/hr', value: '10$/hr', icon: () => <Image source={Asssests.Pakistan} resizeMode={'contain'} style={styles.iconStyle} /> }]}
+                    value={perhour} setvalue={setperhour}
+                    type={'short'} placeholder={'Select'} />
 
-                    <DropDown data={[
-                        { label: '250$/Course', value: '1', icon: () => <Image source={Asssests.America} resizeMode={'contain'} style={styles.iconStyle} /> },
-                        { label: '100$/Course', value: '2', icon: () => <Image source={Asssests.China} resizeMode={'contain'} style={styles.iconStyle} /> },
-                        { label: '190$/Course', value: '3', icon: () => <Image source={Asssests.Pakistan} resizeMode={'contain'} style={styles.iconStyle} /> }]}
-                        value={totalcourse} setvalue={settotalcourse}
-                        type={'medium'}
-                        placeholder={'Select'} />
+                <DropDown data={[
+                    { label: '250$/Course', value: '1', icon: () => <Image source={Asssests.America} resizeMode={'contain'} style={styles.iconStyle} /> },
+                    { label: '100$/Course', value: '2', icon: () => <Image source={Asssests.China} resizeMode={'contain'} style={styles.iconStyle} /> },
+                    { label: '190$/Course', value: '3', icon: () => <Image source={Asssests.Pakistan} resizeMode={'contain'} style={styles.iconStyle} /> }]}
+                    value={totalcourse} setvalue={settotalcourse}
+                    type={'medium'}
+                    placeholder={'Select'} />
 
-                </View>
+            </View>
 
 
 
-            <View style={[commonStyles.row, { marginTop: moderateScale(10) }]}>
+            <View style={[commonStyles.row, { marginTop: moderateScale(20) }]}>
                 <DropDown data={[
                     { label: 'French', value: 'French' },
                     { label: 'Chinese', value: 'Chinese' },
@@ -153,7 +199,7 @@ function BusinessForm() {
                     placeholder={'City'} />
             </View>
 
-            <View style={{ marginTop: moderateScale(20) }}>
+            <View style={{ marginTop: moderateScale(20), width: '90%', alignSelf: "center" }}>
                 <TextInputWithLabel
                     label={'Add Interest'}
                     value={interest2}
@@ -216,7 +262,7 @@ function BusinessForm() {
 
                 <ButtonComp
                     btnText='Save'
-                    onPress={() => { }}
+                    onPress={() => { AddUsers() }}
                     type={'4'}
                     marginTop={10}
                     width={'35%'}
@@ -227,7 +273,7 @@ function BusinessForm() {
             </View>
 
 
-
+            <Loader isLoading={isLoading} type={'white'} />
 
         </KeyboardAwareScrollView>
     )

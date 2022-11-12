@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
         borderColor: colors.white,
         borderRadius: 10,
         padding: 15,
-        minHeight: 150
+        minHeight: 150,
+        color:"#fff"
     },
     iconStyle: {
         height: 20,

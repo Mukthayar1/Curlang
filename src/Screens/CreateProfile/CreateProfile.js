@@ -3,6 +3,7 @@ import { View, Image, ImageBackground, Text, Pressable } from 'react-native';
 import ToggleSwitch from 'toggle-switch-react-native'
 import ImagePicker from 'react-native-image-crop-picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { useSelector } from 'react-redux';
 
 import Assets from '../../constants/imagePath';
 import commonStyles from '../../styles/commonStyles';
@@ -18,6 +19,7 @@ function CreateProfile() {
     const [isEnabled, setIsEnabled] = useState(false);
     const [profile, setprofile] = useState('')
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    const UserDetail = useSelector(state => state?.AuthReducer?.UserDetail?.Data);
 
 
     const uploadphoto = () => {
@@ -31,7 +33,7 @@ function CreateProfile() {
         });
     }
 
-    console.log('profile', profile?.path)
+    console.log('profile======>', UserDetail)
 
     return (
         <WrapperContainer>
@@ -48,12 +50,12 @@ function CreateProfile() {
                                 icon={<View style={styles.switch} />}
                                 onToggle={isOn => toggleSwitch()}
                             />
-                            <Text style={[commonStyles.fontSizewhite13]}>{!isEnabled ? 'Business Form' : 'User Form'}</Text>
+                            <Text style={[commonStyles.fontSizewhite13]}>{!isEnabled ? 'User Form' : 'Business Form'}</Text>
                         </View>
 
                         <Pressable style={styles.thumbnailcontainer} onPress={() => uploadphoto()}>
                             {profile?.path != undefined ?
-                                <Image source={{uri:profile?.path}} style={styles.profile} resizeMode={'cover'} />
+                                <Image source={{ uri: profile?.path }} style={styles.profile} resizeMode={'cover'} />
                                 :
                                 <Image source={Assests.UploadThumbnail} style={styles.thumbnail} resizeMode={'contain'} />
                             }
@@ -66,9 +68,9 @@ function CreateProfile() {
                             width={'30%'}
                         />
 
-                        <TextLabel label={'MICHEAL AXE'} textAlign={'center'} marginTop={10} fontSize={22} />
+                        <TextLabel label={UserDetail?.Username} textAlign={'center'} marginTop={10} fontSize={22} />
 
-                        {!isEnabled ? <BusinessForm /> : <UserForm />}
+                        {!isEnabled ? <BusinessForm profile={profile} /> : <UserForm profile={profile} />}
 
                     </View>
                 </KeyboardAwareScrollView>
