@@ -77,6 +77,9 @@ export const CreateProfile = (Body, SetisLoading, dispatch) => {
                 dispatch(Step(result?.ProfileID))
                 dispatch(UserDetail(result?.Data));
             }
+            else{
+                Alert.alert(result?.Msg)
+            }
             SetisLoading(false)
         })
         .catch(error => {

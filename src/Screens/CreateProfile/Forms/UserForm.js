@@ -34,7 +34,7 @@ function BusinessForm({ profile }) {
     const [perhour, setperhour] = useState();
     const [totalcourse, settotalcourse] = useState();
     const [isLoading, SetisLoading] = useState(false)
-    const UserDetail = useSelector(state => state?.AuthReducer?.UserDetail?.Data);
+    const UserDetail = useSelector(state => state?.AuthReducer?.UserDetail);
     const dispatch = useDispatch();
 
     console.log('lang', lang)
@@ -97,6 +97,8 @@ function BusinessForm({ profile }) {
         CreateProfile(Body, SetisLoading, dispatch)
 
     }
+
+    console.log('first===>',UserDetail)
 
 
 

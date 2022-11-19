@@ -26,7 +26,7 @@ function BusinessForm({ profile }) {
     const [totalcourse, settotalcourse] = useState();
     const [aboutMe, SetaboutMe] = useState('')
     const [isLoading, SetisLoading] = useState(false)
-    const UserDetail = useSelector(state => state?.AuthReducer?.UserDetail?.Data);
+    const UserDetail = useSelector(state => state?.AuthReducer?.UserDetail);
     const dispatch = useDispatch();
 
     console.log('AuthReducer===>', UserDetail)
