@@ -3,6 +3,7 @@ import { Image, View, Pressable } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import ImagePicker from 'react-native-image-crop-picker';
 import { useSelector, useDispatch } from 'react-redux';
+import mime from "mime";
 
 
 import TextInputWithLabel from '../../../Components/TextInputWithLabel'
@@ -61,6 +62,8 @@ function BusinessForm({ profile }) {
         serinterest(filter)
     }
 
+    console.log('profile Pictuer====>', profile?.mime)
+
 
 
     const AddUsers = () => {
@@ -76,29 +79,52 @@ function BusinessForm({ profile }) {
 
             })
         })
+        const newImageUri =  "file:///" + (profile?.path).split("file:/").join("");
 
-        const Body = {
-            "accessKey": AccessKey,
-            "UserID": UserDetail?.ID,
-            "profilePic": profile?.path,
-            "type": "Teacher",
-            "gender": gender,
-            "age": age,
-            "aboutMe": '',
-            "feePerHour": perhour,
-            "feePerCourse": totalcourse,
-            "selectedCity": city,
-            "favoriteCity": country,
-            "interests": interest,
-            "nativeLanguages": lang,
-            "travelImages": Travel
-        }
+        console.log('newImageUri',newImageUri)
+
+        var Body = new FormData();
+        Body.append('accessKey', AccessKey);
+        Body.append('UserID', UserDetail?.ID);
+        Body.append('type', 'Teacher');
+        Body.append('age', age);
+        Body.append('aboutMe', '');
+        Body.append('feePerHour', perhour);
+        Body.append('feePerCourse', totalcourse);
+        Body.append('selectedCity', city);
+        Body.append('favoriteCity', country);
+        Body.append('interests', interest);
+        Body.append('nativeLanguages', lang);
+        Body.append('travelImages', Travel);
+        Body.append('profilePicFile', {
+            uri : newImageUri,
+            type: mime.getType(newImageUri),
+            name: newImageUri.split("/").pop()
+        });
+
+
+        // const Body = {
+        //     "accessKey": AccessKey,
+        //     "UserID": UserDetail?.ID,
+        //     "profilePic": profile?.path,
+        //     "type": "Teacher",
+        //     "gender": gender,
+        //     "age": age,
+        //     "aboutMe": '',
+        //     "feePerHour": perhour,
+        //     "feePerCourse": totalcourse,
+        //     "selectedCity": city,
+        //     "favoriteCity": country,
+        //     "interests": interest,
+        //     "nativeLanguages": lang,
+        //     "travelImages": Travel
+        // }
 
         CreateProfile(Body, SetisLoading, dispatch)
 
     }
 
-    console.log('first===>',UserDetail)
+    console.log('first===>', UserDetail)
 
 
 

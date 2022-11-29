@@ -1,18 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    Admins: []
+    UserCourses: []
 };
 
 export const AppReducer = createSlice({
     name: 'JumbilinAuth',
     initialState,
     reducers: {
-        Admins: (state, action) => {
-            state.Admins = action.payload;
+        UserCourses: (state, action) => {
+            state.UserCourses = action.payload;
         },
     },
 });
 
-export let { Admins } = AppReducer.actions;
+export let { UserCourses } = AppReducer.actions;
 export default AppReducer.reducer;

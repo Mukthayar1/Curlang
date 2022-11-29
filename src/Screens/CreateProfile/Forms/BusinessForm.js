@@ -15,6 +15,7 @@ import colors from '../../../styles/colors'
 import Loader from '../../../Components/Loader';
 import { CreateProfile } from '../../../store/Action/AuthFunctions';
 import { AccessKey } from '../../../config/urls';
+import mime from "mime";
 
 function BusinessForm({ profile }) {
 
@@ -29,7 +30,7 @@ function BusinessForm({ profile }) {
     const UserDetail = useSelector(state => state?.AuthReducer?.UserDetail);
     const dispatch = useDispatch();
 
-    console.log('AuthReducer===>', UserDetail)
+    console.log('profile===>', profile)
 
 
     const ClearValues = () => {
@@ -46,23 +47,45 @@ function BusinessForm({ profile }) {
 
         SetisLoading(true)
 
-        const Body = {
-            "accessKey": AccessKey,
-            "UserID": UserDetail?.ID,
-            "profilePic": profile?.path,
-            "type": "Teacher",
-            "gender": gender,
-            "age": age,
-            "aboutMe": aboutMe,
-            "feePerHour": perhour,
-            "feePerCourse": totalcourse,
-            "selectedCity": "",
-            "favoriteCity": city,
-        }
+        const newImageUri =  "file:///" + (profile?.path).split("file:/").join("");
 
-        console.log('Body',Body)
+        console.log('newImageUri',newImageUri)
 
-        CreateProfile(Body, SetisLoading, dispatch)
+
+        var formdata = new FormData();
+        formdata.append('accessKey', AccessKey);
+        formdata.append('UserID', UserDetail?.ID);
+        formdata.append('type', 'Teacher');
+        formdata.append('age', age);
+        formdata.append('gender', gender);
+        formdata.append('aboutMe', '');
+        // formdata.append('feePerHour', perhour);
+        // formdata.append('feePerCourse', totalcourse);
+        // formdata.append('selectedCity', '');
+        // formdata.append('favoriteCity', city);
+        formdata.append('profilePicFile', {
+           uri : newImageUri,
+            type: mime.getType(newImageUri),
+            name: newImageUri.split("/").pop()
+        });
+
+        // const Body = {
+        //     "accessKey": AccessKey,
+        //     "UserID": UserDetail?.ID,
+        //     "profilePic": profile?.path,
+        //     "type": "Teacher",
+        //     "gender": gender,
+        //     "age": age,
+        //     "aboutMe": aboutMe,
+        //     "feePerHour": perhour,
+        //     "feePerCourse": totalcourse,
+        //     "selectedCity": "",
+        //     "favoriteCity": city,
+        // }
+
+        // console.log('formdata',formdata)
+
+        CreateProfile(formdata, SetisLoading, dispatch)
 
     }
 
