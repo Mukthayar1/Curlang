@@ -2,6 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs';
 import colors from '../styles/colors';
 import { Image, StyleSheet, View } from 'react-native';
+import { useSelector } from 'react-redux';
 import {
     Home,
     Search,
@@ -46,6 +47,7 @@ const TabRoutes = (props) => {
         <Image style={styles.UnActiveIcon} source={img} resizeMode={'contain'} />
     );
 
+    const UserDetails = useSelector((state) => state?.AuthReducer?.UserDetail);
 
 
 
@@ -117,7 +119,7 @@ const TabRoutes = (props) => {
                 options={{
                     tabBarIcon: ({ focused }) => {
                         return (
-                            <Image style={[styles.ActiveImageProfile]} source={imagePath.Profile} resizeMode={'contain'} />
+                            <Image style={[styles.ActiveImageProfile]} source={{uri:`http://107.180.1.24/plesk-site-preview/curlingapp.scitforte.net${UserDetails?.ProfilePic}`}} resizeMode={'contain'} />
                         );
                     },
                 }}
@@ -141,6 +143,7 @@ const styles = StyleSheet.create({
     ActiveImageProfile: {
         height: verticalScale(20),
         width: moderateScale(20),
+        borderRadius:20
     },
     centerButton: {
         height: verticalScale(60),

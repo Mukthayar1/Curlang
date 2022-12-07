@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, Pressable, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
+import { useSelector } from 'react-redux';
 
 import Assets from '../../../constants/imagePath';
 import AppDefaultGrdiantContainer from '../../../Components/GrdiantView';
@@ -11,7 +12,11 @@ import TextLabel from '../../../Components/Label';
 import navigationStrings from '../../../constants/navigationStrings';
 
 function CustomHeader({ users }) {
-    const navigation = useNavigation()
+    const navigation = useNavigation();
+    const UserDetails = useSelector((state) => state?.AuthReducer?.UserDetail);
+
+    console.log('UserDetails',UserDetails)
+
     return (
         <View style={styles.container} >
 
@@ -23,11 +28,11 @@ function CustomHeader({ users }) {
             </View>
 
             <View style={styles.Userdetails}>
-                <Image source={require('../../../assets/images/avatar.png')} style={[styles.Userpic]} resizeMode={'contain'} />
+                <Image  source={{uri:`http://107.180.1.24/plesk-site-preview/curlingapp.scitforte.net${UserDetails?.ProfilePic}`}} style={[styles.Userpic]} resizeMode={'contain'} />
                 <Image source={Assets.China} style={[styles.China]} resizeMode={'contain'} />
             </View>
 
-            <TextLabel label={'Mauricio Lopez'} fontSize={27} textAlign={'center'} marginTop={10} />
+            <TextLabel label={UserDetails?.FullName} fontSize={27} textAlign={'center'} marginTop={10} />
             <TextLabel label={'🖱 Diseño ui/ux y Fotografia 📷 Zihuatanejo, Mexico'} fontSize={11} textAlign={'center'} marginTop={10} />
             <TextLabel label={'#LifeStyle #Design #Photography #Urban #Art'} fontSize={11} textAlign={'center'} marginTop={0} color={colors.orange1} />
 
@@ -46,17 +51,17 @@ function CustomHeader({ users }) {
             <View style={[styles.followrow]}>
 
                 <View>
-                    <TextLabel label={'735'} fontSize={22} textAlign={'center'} color={colors.white} />
+                    <TextLabel label={0} fontSize={22} textAlign={'center'} color={colors.white} />
                     <TextLabel label={'Posts'} fontSize={11} textAlign={'center'} color={colors.orange1} />
                 </View>
 
                 <View>
-                    <TextLabel label={'876'} fontSize={22} textAlign={'center'} color={colors.white} />
+                    <TextLabel label={UserDetails?.Followers} fontSize={22} textAlign={'center'} color={colors.white} />
                     <TextLabel label={'Followers'} fontSize={11} textAlign={'center'} color={colors.orange1} />
                 </View>
 
                 <View>
-                    <TextLabel label={'568'} fontSize={22} textAlign={'center'} color={colors.white} />
+                    <TextLabel label={UserDetails?.FriendsTo} fontSize={22} textAlign={'center'} color={colors.white} />
                     <TextLabel label={'Friends'} fontSize={11} textAlign={'center'} color={colors.orange1} />
                 </View>
 

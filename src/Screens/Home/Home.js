@@ -19,7 +19,9 @@ function Home() {
   const dispatch = useDispatch()
   useEffect(() => {
     GetAllCourses(UserDetails?.UserID, dispatch)
-  }, [])
+  }, []);
+
+  console.log('UserDetails',UserDetails?.ProfilePic)
 
   return (
 

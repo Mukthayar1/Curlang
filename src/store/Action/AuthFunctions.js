@@ -15,7 +15,7 @@ export function signUp(data, SetisLoading, navigation) {
             if (result?.ResponseType == 0) Alert.alert(result.Msg)
 
             if (result?.ResponseType == 1) {
-                Alert.alert('Account Created Successfully, Login To Continue !')
+                Alert.alert('Registration Successfully, Login To Continue !')
                 navigation.goBack()
             }
             SetisLoading(false);
@@ -73,9 +73,8 @@ export const login = (data, SetisLoading, dispatch) => {
 export const CreateProfile = (formdata, SetisLoading, dispatch) => {
 
     var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append('Content-Type', 'multipart/form-data');
 
-    // var raw = JSON.stringify(Body);
 
     var requestOptions = {
         method: 'POST',
@@ -84,16 +83,16 @@ export const CreateProfile = (formdata, SetisLoading, dispatch) => {
         redirect: 'follow'
     };
 
-    console.log('Body',formdata)
 
     fetch(`${API_BASE_URL}/create-profile`, requestOptions)
         .then(response => response.json())
         .then(result => {
-            console.log('Result By Save', result?.Msg);
+            console.log('Result By Save===>', result);
             if (result?.Msg == 'Successfully Saved!') {
-                dispatch(LoginUser(true));
-                dispatch(Step(result?.ProfileID))
-                dispatch(UserDetail(result?.Data));
+                dispatch(LoginUser(false));
+                dispatch(Step(''))
+                dispatch(UserDetail(''));
+                Alert.alert('Account created ','Login to continue')
             }
             else {
                 Alert.alert(result?.Msg)

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Image, View, Pressable } from 'react-native'
+import { Image, View, Pressable, Alert } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import ImagePicker from 'react-native-image-crop-picker';
 import { useSelector, useDispatch } from 'react-redux';
@@ -22,23 +22,21 @@ import { AccessKey } from '../../../config/urls';
 function BusinessForm({ profile }) {
 
     const [nickname, setnickname] = useState('')
-    const [city, setcity] = useState();
-    const [state, setstate] = useState();
-    const [age, setage] = useState();
-    const [gender, setgender] = useState();
+    const [city, setcity] = useState('');
+    const [state, setstate] = useState('');
+    const [age, setage] = useState('');
+    const [gender, setgender] = useState('');
     const [lang, setlang] = useState([]);
-    const [learnlang, setlearnlang] = useState();
-    const [country, setcountry] = useState();
+    const [learnlang, setlearnlang] = useState('');
+    const [country, setcountry] = useState('');
     const [interest, serinterest] = useState([])
     const [interest2, serinterest2] = useState([])
     const [travelphotos, settravelphotos] = useState([]);
-    const [perhour, setperhour] = useState();
-    const [totalcourse, settotalcourse] = useState();
+    const [perhour, setperhour] = useState('');
+    const [totalcourse, settotalcourse] = useState('');
     const [isLoading, SetisLoading] = useState(false)
     const UserDetail = useSelector(state => state?.AuthReducer?.UserDetail);
     const dispatch = useDispatch();
-
-    console.log('lang', lang)
 
 
     const uploadphoto = () => {
@@ -62,69 +60,55 @@ function BusinessForm({ profile }) {
         serinterest(filter)
     }
 
-    console.log('profile Pictuer====>', profile?.mime)
-
 
 
     const AddUsers = () => {
 
-        SetisLoading(true)
+
+        if (profile?.assets == undefined) {
+            Alert.alert('Please Upload Image')
+        } else {
 
 
-        let Travel = []
-        travelphotos.map((v, i) => {
-            Travel.push({
-                FileName: v.path,
-                Title: ''
+            SetisLoading(true)
 
+            let Travel = []
+            travelphotos.map((v, i) => {
+                Travel.push({
+                    FileName: v.path,
+                    Title: ''
+
+                })
             })
-        })
-        const newImageUri =  "file:///" + (profile?.path).split("file:/").join("");
 
-        console.log('newImageUri',newImageUri)
+            var formdata = new FormData();
+            formdata.append('accessKey', AccessKey);
+            formdata.append('UserID', UserDetail?.ID);
+            formdata.append('type', 'Student');
+            formdata.append('age', age);
+            formdata.append('aboutMe', '');
+            formdata.append('feePerHour', 10.00);
+            formdata.append('feePerCourse', totalcourse);
+            formdata.append('selectedCity', city);
+            formdata.append('favoriteCity', country);
+            formdata.append('interests', interest);
+            formdata.append('nativeLanguages', lang);
+            formdata.append('travelImages', Travel);
+            formdata.append('profilePicFile', {
+                uri: profile?.assets[0]?.uri,
+                type: profile?.assets[0]?.type,
+                name: profile?.assets[0]?.fileName
+            });
 
-        var Body = new FormData();
-        Body.append('accessKey', AccessKey);
-        Body.append('UserID', UserDetail?.ID);
-        Body.append('type', 'Teacher');
-        Body.append('age', age);
-        Body.append('aboutMe', '');
-        Body.append('feePerHour', perhour);
-        Body.append('feePerCourse', totalcourse);
-        Body.append('selectedCity', city);
-        Body.append('favoriteCity', country);
-        Body.append('interests', interest);
-        Body.append('nativeLanguages', lang);
-        Body.append('travelImages', Travel);
-        Body.append('profilePicFile', {
-            uri : newImageUri,
-            type: mime.getType(newImageUri),
-            name: newImageUri.split("/").pop()
-        });
+            console.log('formdata', formdata)
 
 
-        // const Body = {
-        //     "accessKey": AccessKey,
-        //     "UserID": UserDetail?.ID,
-        //     "profilePic": profile?.path,
-        //     "type": "Teacher",
-        //     "gender": gender,
-        //     "age": age,
-        //     "aboutMe": '',
-        //     "feePerHour": perhour,
-        //     "feePerCourse": totalcourse,
-        //     "selectedCity": city,
-        //     "favoriteCity": country,
-        //     "interests": interest,
-        //     "nativeLanguages": lang,
-        //     "travelImages": Travel
-        // }
+            CreateProfile(formdata, SetisLoading, dispatch)
 
-        CreateProfile(Body, SetisLoading, dispatch)
+        }
 
     }
 
-    console.log('first===>', UserDetail)
 
 
 
@@ -223,7 +207,7 @@ function BusinessForm({ profile }) {
                     label={'Selected City'}
                     value={city}
                     type={'white'}
-                    onChangeText={(e) => setage(e)}
+                    onChangeText={(e) => setcity(e)}
                     placeholder={'City'} />
             </View>
 

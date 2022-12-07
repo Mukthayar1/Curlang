@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Image, View, TextInput, ImageBackground, Pressable, ScrollView, ActivityIndicator } from 'react-native'
+import { Image, View, TextInput, ImageBackground, Pressable, ScrollView, ActivityIndicator, Alert } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
@@ -47,11 +47,10 @@ function Search() {
         setcity(UserDetails?.FavoriteCity)
         setage(UserDetails?.Age)
         setgender(UserDetails?.Gender)
-        serinterest(UserDetails?.UserInterests)
+        // interest(UserDetails?.UserInterests)
     }, [focus])
 
 
-    console.log('cate=====>', courses)
 
     const removeItem = (id) => {
         let arr = interest
@@ -64,9 +63,15 @@ function Search() {
 
 
     const SearchProfilePress = () => {
-        Setloading(true)
-        const data = `search-profile?accesskey=${AccessKey}&userID=${UserDetails?.UserID}&city=${city}&state=${state}&gender=${gender}&category=${cate}&courseID=${courses}&description=${des}&age=${age}`
-        SearchProfile(data, Setloading, navigation);
+        
+        if (city?.length == undefined || state?.length == undefined || gender?.length == undefined || cate?.length == undefined || courses?.length == undefined || des?.length == undefined || age?.length == undefined) {
+            Alert.alert('Warning', 'All felids are required.')
+        }
+        else {
+            Setloading(true)
+            const data = `search-profile?accesskey=${AccessKey}&userID=${UserDetails?.UserID}&city=${city}&state=${state}&gender=${gender}&category=${cate}&courseID=${courses}&description=${des}&age=${age}`
+            SearchProfile(data, Setloading, navigation);
+        }
 
     }
 
@@ -208,7 +213,6 @@ function Search() {
                     </View>
                 }
             </ScrollView>
-            {/* </KeyboardAwareScrollView> */}
         </ImageBackground>
 
 

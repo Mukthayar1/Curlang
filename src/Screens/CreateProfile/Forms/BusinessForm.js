@@ -30,7 +30,6 @@ function BusinessForm({ profile }) {
     const UserDetail = useSelector(state => state?.AuthReducer?.UserDetail);
     const dispatch = useDispatch();
 
-    console.log('profile===>', profile)
 
 
     const ClearValues = () => {
@@ -45,12 +44,8 @@ function BusinessForm({ profile }) {
 
     const AddUsers = () => {
 
+
         SetisLoading(true)
-
-        const newImageUri =  "file:///" + (profile?.path).split("file:/").join("");
-
-        console.log('newImageUri',newImageUri)
-
 
         var formdata = new FormData();
         formdata.append('accessKey', AccessKey);
@@ -59,31 +54,15 @@ function BusinessForm({ profile }) {
         formdata.append('age', age);
         formdata.append('gender', gender);
         formdata.append('aboutMe', '');
-        // formdata.append('feePerHour', perhour);
-        // formdata.append('feePerCourse', totalcourse);
-        // formdata.append('selectedCity', '');
-        // formdata.append('favoriteCity', city);
+        formdata.append('feePerHour', perhour);
+        formdata.append('feePerCourse', totalcourse);
+        formdata.append('selectedCity', city);
+        formdata.append('favoriteCity', city);
         formdata.append('profilePicFile', {
-           uri : newImageUri,
-            type: mime.getType(newImageUri),
-            name: newImageUri.split("/").pop()
+            uri: profile?.assets[0]?.uri,
+            type: profile?.assets[0]?.type,
+            name: profile?.assets[0]?.fileName
         });
-
-        // const Body = {
-        //     "accessKey": AccessKey,
-        //     "UserID": UserDetail?.ID,
-        //     "profilePic": profile?.path,
-        //     "type": "Teacher",
-        //     "gender": gender,
-        //     "age": age,
-        //     "aboutMe": aboutMe,
-        //     "feePerHour": perhour,
-        //     "feePerCourse": totalcourse,
-        //     "selectedCity": "",
-        //     "favoriteCity": city,
-        // }
-
-        // console.log('formdata',formdata)
 
         CreateProfile(formdata, SetisLoading, dispatch)
 

@@ -5,7 +5,6 @@ import { UserCourses } from '../Reducers/AppReducer/AppReducer';
 
 
 export const SearchProfile = (data, Setloading, navigation) => {
-
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -32,8 +31,6 @@ export const SearchProfile = (data, Setloading, navigation) => {
             console.log('error', error)
 
         });
-
-
 }
 
 
@@ -60,5 +57,31 @@ export const GetAllCourses = (UserID, dispatch) => {
         .catch(error => {
             console.log('error', error)
 
+        });
+}
+
+
+export const GetUpdatedProfile = (dispatch, SetisLoading, data, UserDetail) => {
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        body: '',
+        redirect: 'follow'
+    };
+
+    fetch(`${API_BASE_URL}get-profile-by-id?accesskey=${AccessKey}&userID=${data.UserID}&ProfileID=${data.ProfileID}`, requestOptions)
+        .then(response => response.json())
+        .then(result2 => {
+            dispatch(UserDetail(result2?.Data));
+            console.log('result2', result2)
+            SetisLoading(false)
+        })
+        .catch(error => {
+            SetisLoading(false)
+            console.log('error GetUpdatedProfile ', error)
         });
 }
